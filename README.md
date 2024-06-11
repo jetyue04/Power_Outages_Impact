@@ -117,6 +117,7 @@ The following pivot table is a breakdown of the average outage duration by diffe
 # Assessment of Missingness 
 
 ### NMAR Analysis (TO-DO)
+As per our analysis of the columns in this dataset, we observed that 
 
 
 ### Missingness Dependency
