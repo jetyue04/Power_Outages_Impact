@@ -88,13 +88,30 @@ For our univariate analysis, we explored the following plots
 
 <insert data>
 
+We explored a couple more plots for our univariate analysis, but one of utmost interest to us was to pictographically visualize average power outages across the United States, which we did through a geomap (pictured below). We used median power outages to get a general understanding of the distribution across states in the USA.
+
+<iframe
+  src="assets/univar_choropleth.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+We see that states like West Virginia and Michigan have significantly higher median power outage duration compared to other regions in the United States, which poses an interesting question of why this could be taking place.
+
+
 #### Bivariate Analysis
 
-For our bivariate analysis, we used a box plot to explore the differences in outage duration caused be different categories. Our choice of picking was between severe weather and intentional attacks, which we have pictured below <inset boxplot>. We see that with severe weather, there appears to be longer outages, both with a higher mean and a greater spread of durations, while intentional attacks tend to have shorter durations and fewer outliers.
+For our bivariate analysis, we used a box plot to explore the differences in outage duration caused be different categories. Our choice of picking was between severe weather and intentional attacks, which we have pictured below:
 
-We explored a couple more plots for our bivariate analysis, but one of utmost interest to us was to pictographically visualize average power outages across the United States, which we did through a geomap (pictured below). We used median power outages to get a general understanding of the distribution across states in the USA.
+<iframe
+  src="assets/fig2.bivar_boxplot.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
-<insert geomap>
+We see that with severe weather, there appears to be longer outages, both with a higher mean and a greater spread of durations, while intentional attacks tend to have shorter durations and fewer outliers.
 
 
 
@@ -116,9 +133,102 @@ The following pivot table is a breakdown of the average outage duration by diffe
 
 # Assessment of Missingness 
 
-### NMAR Analysis (TO-DO)
-As per our analysis of the columns in this dataset, we observed that 
+### NMAR Analysis 
+As per our analysis of the columns in this dataset, we observed that the column CAUSE.CATEGORY.DETAILS is potentially displaying NMAR. There are several inconsistencies in the data entry for this column, which make it appear as though it was manually entered by the researchers. For example, there are several variations of CAUSE.CATEGORY.DETAILS containing 'wind' such as: 
+- 'heavy wind', 'wind storm', 'wind', 'wind/rain' 
+- 'snow/ice ', 'snow/ice storm' 
+
+which are variations of the same cause category. 
+
+Another example would be errors in the spacing of entries. For example, 'Hydro' and ' Hydro' are both unique entries in the column even though it is essentially the same cause category.
+
+
+Here is a list of the variables found in CAUSE.CATEGORY.DETAIL:
+
+ [nan, 'vandalism', 'heavy wind', 'thunderstorm', 'winter storm', 'tornadoes', 'sabotage', 'hailstorm', 'uncontrolled loss', 'winter', 'wind storm', 'computer hardware', 'public appeal', 'storm', ' Coal', ' Natural Gas', 'hurricanes', 'wind/rain', 'snow/ice storm', 'snow/ice ', 'transmission interruption', 'flooding', 'transformer outage', 'generator trip', 'relaying malfunction', 'transmission trip', 'lightning', 'switching', 'shed load', 'line fault', 'breaker trip', 'wildfire', ' Hydro', 'majorsystem interruption', 'voltage reduction', 'transmission', 'Coal', 'substation', 'heatwave', 'distribution interruption', 'wind', 'suspicious activity', 'feeder shutdown', '100 MW loadshed', 'plant trip', 'fog', 'Hydro', 'earthquake', 'HVSubstation interruption', 'cables', 'Petroleum', 'thunderstorm; islanding', 'failure']
 
 
 ### Missingness Dependency
+
+For our process of selecting which columns to explore missingness dependencies, we genereated a heatmap to visualize details:
+
+<iframe
+  src="assets/fig4_missingness_heatmap.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+We decided to explore the missingness dependency of **CUSTOMERS.AFFECTED** on **CAUSE.CATEGORY**. Essentially, our claim is that the missingness of Customers Affected is MAR dependent on the cause. We performed a permutation test to answer this question, and used total variation as our test statistic of choice.
+
+The following barplot graphs the observed distribution of **CAUSE.CATEOGRY** separated by the missingess of the respective number of customers affected. 
+
+<iframe
+  src="assets/testplot.missingness_analysis.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+This is the observed distribution of permutation TVD's against our observed TVD. We see that our observed TVD (the red line) is situated to the right of main (blue) distribution, which indicates that our test generated a p-value of 0 (approximately).
+
+This essentially implies that there is a **significant difference** in caus #TO-D0
+<iframe
+  src="assets/fig5a.tvd.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+<iframe
+  src="assets/fig5b_hist.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+
+# Hypothesis Testing
+
+**Null Hypothesis:** There is **no** significant difference in the outage duration of major power outages when caused by severe weather and outages caused by intentional attacks
+
+**Alternative Hypothesis:** There **is** no significant difference in the outage duration of major power outages when caused by severe weather and outages caused by intentional attacks.
+
+**Population:** The total set of outage durations across all categories and events present in the original dataset. 
+
+**Sample size:** Subset of outage durations caused by severe weather and intentional attacks
+
+<iframe
+  src="assets/fig6.hypothesis_test.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+We see here that the distributions have similar shapes, which is why we decided to use absolute difference in means as our test statistic.
+
+**Test Statistic:** Absolute difference in means 
+
+**Significance Level:** 0.05
+
+**P-Value:** 0.0
+
+<iframe
+  src="assets/fig7.ht_result.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+This plot shows us that there is a significant difference between the 2 cause categories.
+
+**Conclusion:** Since the P-value was 0.0 (< 0.05 significance level), we reject our null hypothesis that outage durations caused by severe weather has no significant difference to the outage durations caused by intentional attacks. This favours our alternative hypothesis, that there is in fact a significant difference in the outage duration caused by these different cause categories.
+
+
+
+
+
+
+
+
 
