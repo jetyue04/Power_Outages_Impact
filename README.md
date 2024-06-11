@@ -98,6 +98,7 @@ We explored a couple more plots for our univariate analysis, but one of utmost i
   frameborder="0"
 ></iframe>
 
+    
 We see that states like West Virginia and Michigan have significantly higher median power outage duration compared to other regions in the United States, which poses an interesting question of why this could be taking place.
 
 
