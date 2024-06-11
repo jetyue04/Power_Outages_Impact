@@ -44,7 +44,7 @@ For our approach, we have compiled a list of the data we feel is most relevant t
 - POPULATION: Population of the affected area.
 
 
-# Data Cleaning and EDA
+# Data Cleaning and Exploratory Data Analysis
 
 In the original dataset, there are several rows in the excel sheet encompassing a description of the data. We removed those rows before importing it into our notebook.
 
