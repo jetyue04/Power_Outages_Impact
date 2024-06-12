@@ -88,32 +88,19 @@ In summation: The data cleaning steps transformed raw data into a structured and
 #### Univariate Analysis 
 For our univariate analysis, we coded an analysis for every variable in the dataset. One of the plots we found most interesting was the distribution of cause categories, as pictured below:
 
-<iframe
-  src="assets/fig1.univar_barplot.html"
-  padding = 0
-  width="1000"
-  height="500"
-  display=block
-  frameborder="0"
-></iframe>
+<iframe src="assets/fig1.univar_barplot.html"  width="1000" height="400"  frameborder="0"></iframe>
 
 
 We explored a couple more plots for our univariate analysis, but one of utmost interest to us was to pictographically visualize average power outages across the United States, which we did through a geomap (pictured below). We used median power outages to get a general understanding of the distribution across states in the USA.
 
-<iframe
-  src="assets/univar_choropleth.html"
-  padding = 0
-  width="1000"
-  height="500"
-  display=block
-  frameborder="0"></iframe>
+<iframe src="assets/univar_choropleth.html"  width="1000" height="400"  frameborder="0"></iframe>
 We see that states like West Virginia and Michigan have significantly higher median power outage duration compared to other regions in the United States, which poses an interesting question of why this could be taking place.
 
 #### Bivariate Analysis
 
 For our bivariate analysis, we used a box plot to explore the differences in outage duration caused be different categories. Our choice of picking was between severe weather and intentional attacks, which we have pictured below:
 
-<iframe src="assets/fig2.bivar_boxplot.html" padding = 0 width="1000" height="500" frameborder="0" ></iframe>
+<iframe src="assets/fig2.bivar_boxplot.html"  width="1000" height="400" frameborder="0" ></iframe>
 
 We see that with severe weather, there appears to be longer outages, both with a higher mean and a greater spread of durations, while intentional attacks tend to have shorter durations and fewer outliers.
 
@@ -157,23 +144,13 @@ Here is a list of the variables found in CAUSE.CATEGORY.DETAIL:
 
 For our process of selecting which columns to explore missingness dependencies, we genereated a heatmap to visualize details:
 
-<iframe
-  src="assets/fig4_missingness_heatmap.html"
-  width="800"
-  height="500"
-  frameborder="0"
-></iframe>
+<iframe src="assets/fig4_missingness_heatmap.html" width="1000" height="400" frameborder="0" ></iframe>
 
 We decided to explore the missingness dependency of **CUSTOMERS.AFFECTED** on **CAUSE.CATEGORY**. Essentially, our claim is that the missingness of Customers Affected is MAR dependent on the cause. We performed a permutation test to answer this question, and used total variation as our test statistic of choice.
 
 The following barplot graphs the observed distribution of **CAUSE.CATEOGRY** separated by the missingess of the respective number of customers affected. 
 
-<iframe
-  src="assets/testplot.missingness_analysis.html"
-  width="800"
-  height="500"
-  frameborder="0"
-></iframe>
+<iframe src="assets/testplot.missingness_analysis.html" width="1000" height="400" frameborder="0" ></iframe>
 
 This is the observed distribution of permutation TVD's against our observed TVD. We see that our observed TVD (the red line) is situated to the right of main (blue) distribution, which indicates that our test generated a p-value of 0 (approximately).
 
