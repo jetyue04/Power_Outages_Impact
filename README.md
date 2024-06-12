@@ -38,9 +38,6 @@ For our approach, we have compiled a list of the data we feel is most relevant t
 - U.S._STATE: Location of the outage
 - CLIMATE.REGION: Climate region of the outage location.
 - ANOMALY.LEVEL: Climate anomaly level during the time of the outage.
-- RES.SALES, COM.SALES, IND.SALES: Electricity consumption patterns by residential, commercial, and industrial sectors.
-- TOTAL.SALES: Total electricity sales in the affected area.
-- PC.REALGSP.STATE: Per capita real Gross State Product.
 - POPULATION: Population of the affected area.
 
 
