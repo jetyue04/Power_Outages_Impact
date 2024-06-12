@@ -235,8 +235,15 @@ This plot shows us that there is a significant difference between the 2 cause ca
 **Conclusion:** Since the P-value was 0.0 (< 0.05 significance level), we reject our null hypothesis that outage durations caused by severe weather has no significant difference to the outage durations caused by intentional attacks. This favours our alternative hypothesis, that there is in fact a significant difference in the outage duration caused by these different cause categories.
 
 
-# Prediciton Problem
+# Framing the Prediction Model
 
+After investigating the relationship of outage duration with regards to the cause of the power outage as well as the region in which it occured, we decided to build upon this investigation. As such, we will make a predictive model to determine the severity of a power outage. There are three given variables that act as a proxy/measure for the severity, CUSTOMERS.AFFECTED, DEMAND.LOSS.MW and OUTAGE.DURATION.
+
+```
+OUTAGE.DURATION       0.09
+CUSTOMERS.AFFECTED    0.43
+DEMAND.LOSS.MW        0.59
+```
 
 
 
