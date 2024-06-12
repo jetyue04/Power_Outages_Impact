@@ -284,6 +284,46 @@ For our baseline model, we used a linear regression model based on few variables
 
 # Final Model
 
+In our final model, we encoded tests using a custom logistic regressor, a decision tree classifier, and a random forest classifier to validate our model.
+
+Our results for each are as follows:
+
+#### Logistic Regression:
+```
+f1 score on training data: 0.7601331977301075
+f1 score on test data: 0.74431015253997
+Accuracy on training data: 0.7404148550724637
+Accuracy on test data: 0.7229494584837545
+```
+
+#### Decision Tree Classifier:
+```
+f1 score on training data: 0.8044828429651232
+f1 score on test data: 0.7865718074276548
+Accuracy on training data: 0.7912880434782608
+Accuracy on test data: 0.7716245487364622
+```
+
+#### Random Forest Classifier:
+
+```
+f1 score on training data: 0.8328073100879739
+f1 score on test data: 0.8060692996285136
+Accuracy on training data: 0.8205634057971014
+Accuracy on test data: 0.7917942238267148
+```
+
+We can see that the RandomForest performs the best of all the classifiers, in terms of both f1 score and accuracy on test data. 
+
+### Finding the best hyperparamters:
+
+In order to find the best combination of hyperparameters to yield the best results, we used GridSearchCV to perform k-fold cross validation on our test data.
+
+
+
+
+
+
 
 
 
