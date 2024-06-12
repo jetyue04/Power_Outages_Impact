@@ -319,7 +319,13 @@ We can see that the RandomForest performs the best of all the classifiers, in te
 
 In order to find the best combination of hyperparameters to yield the best results, we used GridSearchCV to perform k-fold cross validation on our test data.
 
+## Results from GridSearchCV:
 
+```
+ 'classifer__criterion': 'gini',
+ 'classifer__max_depth': 15,
+ 'classifer__n_estimators': 200
+```
 
 
 
