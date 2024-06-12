@@ -91,9 +91,13 @@ For our univariate analysis, we explored the following plots
 
 We explored a couple more plots for our univariate analysis, but one of utmost interest to us was to pictographically visualize average power outages across the United States, which we did through a geomap (pictured below). We used median power outages to get a general understanding of the distribution across states in the USA.
 
+<iframe
+  src="assets/univar_choropleth.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
-!!!!!!
-    
 We see that states like West Virginia and Michigan have significantly higher median power outage duration compared to other regions in the United States, which poses an interesting question of why this could be taking place.
 
 
@@ -101,7 +105,12 @@ We see that states like West Virginia and Michigan have significantly higher med
 
 For our bivariate analysis, we used a box plot to explore the differences in outage duration caused be different categories. Our choice of picking was between severe weather and intentional attacks, which we have pictured below:
 
-!!!!!!!!!
+<iframe
+  src="assets/fig2.bivar_boxplot.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 We see that with severe weather, there appears to be longer outages, both with a higher mean and a greater spread of durations, while intentional attacks tend to have shorter durations and fewer outliers.
 
@@ -145,13 +154,23 @@ __
 
 For our process of selecting which columns to explore missingness dependencies, we genereated a heatmap to visualize details:
 
-!!!!!!!!!!!!
+<iframe
+  src="assets/fig4_missingness_heatmap.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 We decided to explore the missingness dependency of **CUSTOMERS.AFFECTED** on **CAUSE.CATEGORY**. Essentially, our claim is that the missingness of Customers Affected is MAR dependent on the cause. We performed a permutation test to answer this question, and used total variation as our test statistic of choice.
 
 The following barplot graphs the observed distribution of **CAUSE.CATEOGRY** separated by the missingess of the respective number of customers affected. 
 
-!!!!!!!!!!
+<iframe
+  src="assets/testplot.missingness_analysis.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 This is the observed distribution of permutation TVD's against our observed TVD. We see that our observed TVD (the red line) is situated to the right of main (blue) distribution, which indicates that our test generated a p-value of 0 (approximately).
 
@@ -159,7 +178,21 @@ This essentially implies that there is a **significant difference** in the distr
 
 
 
-!!!!!!!!!!!!1
+<iframe
+  src="assets/fig5a.tvd.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+
+
+<iframe
+  src="assets/fig5b_hist.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 
 # Hypothesis Testing
@@ -172,7 +205,12 @@ This essentially implies that there is a **significant difference** in the distr
 
 **Sample size:** Subset of outage durations caused by severe weather and intentional attacks
 
-!!!!!!!!!
+<iframe
+  src="assets/fig6.hypothesis_test.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 We see here that the distributions have similar shapes, which is why we decided to use absolute difference in means as our test statistic.
 
@@ -182,14 +220,18 @@ We see here that the distributions have similar shapes, which is why we decided 
 
 **P-Value:** 0.0
 
-!!!!!!!!
+<iframe
+  src="assets/fig7.ht_result.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 This plot shows us that there is a significant difference between the 2 cause categories.
 
 **Conclusion:** Since the P-value was 0.0 (< 0.05 significance level), we reject our null hypothesis that outage durations caused by severe weather has no significant difference to the outage durations caused by intentional attacks. This favours our alternative hypothesis, that there is in fact a significant difference in the outage duration caused by these different cause categories.
 
 
-# Prediction Problem
 #
 
 
