@@ -35,7 +35,7 @@ For our approach, we have compiled a list of the data we feel is most relevant t
 - OUTAGE.START.DATE: Date when the outage started.
 - OUTAGE.RESTORATION.DATE: Date when power was restored.
 - CUSTOMERS.AFFECTED: Number of customers affected by the outage.
-- U.S._STATE: Location of the outage
+- U.S._STATE/POSTAL.CODE: Location of the outage
 - CLIMATE.REGION: Climate region of the outage location.
 - ANOMALY.LEVEL: Climate anomaly level during the time of the outage.
 - POPULATION: Population of the affected area.
