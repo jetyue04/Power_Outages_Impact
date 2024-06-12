@@ -258,4 +258,6 @@ For our metric, we will use the
 From our tests, we found that the outage duration varies significantly for severe weather and fuel supply emergency. However, fuel supply emergency is not significant in terms of its proportion in the outage causes, while severe weather is. Therefore, we are going to do a classification model on predicting whether or not a power outage is caused by 'severe weather'.
 
 
+# Baseline Model
+
 
