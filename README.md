@@ -93,6 +93,7 @@ For our univariate analysis, we coded an analysis for every variable in the data
   padding = 0
   width="1000"
   height="800"
+  display=block
   frameborder="0"
 ></iframe>
 
@@ -101,6 +102,7 @@ We explored a couple more plots for our univariate analysis, but one of utmost i
 
 <iframe
   src="assets/univar_choropleth.html"
+  padding = 0
   width="1000"
   height="500"
   display=block
