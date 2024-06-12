@@ -315,11 +315,11 @@ Accuracy on test data: 0.7917942238267148
 
 We can see that the RandomForest performs the best of all the classifiers, in terms of both f1 score and accuracy on test data. 
 
-## Finding the best hyperparamters:
+#### Finding the best hyperparamters:
 
 In order to find the best combination of hyperparameters to yield the best results, we used GridSearchCV to perform k-fold cross validation on our test data.
 
-## Results from GridSearchCV:
+### Results from GridSearchCV:
 
 ```
  'classifer__criterion': 'gini',
@@ -327,8 +327,18 @@ In order to find the best combination of hyperparameters to yield the best resul
  'classifer__n_estimators': 200
 ```
 
+When comparing the training versus testing scores, we see a relatively high score for test data.  
 
-
+#### Training data:
+```py
+grids.score(X_train, y_train)
+0.9896551724137932
+```
+#### Testing data:
+```py
+grids.score(X_test, y_test)
+0.8220064724919093
+```
 
 
 
