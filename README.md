@@ -296,6 +296,33 @@ grids.score(X_test, y_test)
 
 # Fairness Analysis
 
+For our fairness evaluation, we decided to assess if the model performs differently based on the season.
+
+**Null Hypothesis**: The model is fair; the absolute difference in F1 scores between winter and summer months is due to random chance. This implies that any observed performance difference between the two groups is not significant.
+**Alternative Hypothesis**: The model is unfair; the absolute difference in F1 scores between winter and summer months is significant and not due to random chance. This suggests that the model performs differently for winter and summer months in a way that is unlikely to be due to randomness.
+
+#### Choice of Groups
+  Group X: Winter months (December, January, February)
+  Group Y: Summer months (June, July, August)
+
+#### Evaluation Metric
+  Metric: F1 Score
+
+#### Choice of Test Statistic
+  Test Statistic: Absolute difference in F1 scores between the groups.
+
+#### Significance Level
+  α = 0.05
+
+#### Permutation Test Results
+  Observed F1 score difference: 0.022343821249430018
+  P-value: 0.36
+
+Our chosen significance level is 0.05, and since our p-value > 0.05, we concluded that there is no significant difference in F1 scores between winter and summer months. Hence we fail to reject our null hypothesis, and our models' performance is fair with respect to seasonal differences. 
+
+<iframe src="assets/fig9.fairness_eval.html" width="1000"  height="450"  frameborder="0"></iframe>
+
+
 
 
 
