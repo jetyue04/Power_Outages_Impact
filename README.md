@@ -241,6 +241,7 @@ For our baseline model, we used a linear regression model based on few variables
 # Final Model
 
 In our final model, we encoded tests using a custom logistic regressor, a decision tree classifier, and a random forest classifier to validate our model.
+It is important to note that for initial test runs, we performed the classification without implemnting a grid search to get a rough idea of which classifier to use. 
 
 Our results for each are as follows:
 
@@ -270,11 +271,11 @@ Accuracy on test data: 0.7917942238267148
 ```
 
 We can see that the RandomForest performs the best of all the classifiers, in terms of both f1 score and accuracy on test data. 
-Note: RandomForest was performed without GridSearchCV to get a rough comparison. 
 
 #### Finding the best hyperparamters:
 
 In order to find the best combination of hyperparameters to yield the best results, we used GridSearchCV to perform k-fold cross validation on our test data.
+For our GridSearchCV test, we performed 1000 iterations per test, yielding 4000 total iterations. 
 
 ### Results from GridSearchCV:
 
@@ -284,8 +285,7 @@ In order to find the best combination of hyperparameters to yield the best resul
  'classifer__n_estimators': 200
 ```
 
-When comparing the training versus testing scores, we see a relatively high score for test data.   ADD: 1000 ITERATIONS, 4000 IN TOTAL, HENCE LONG RUN TIME
-
+When comparing the training versus testing scores, we see a relatively high score for test data.   
 #### Training data:
 ```py
 grids.score(X_train, y_train)
