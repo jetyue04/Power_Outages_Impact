@@ -84,7 +84,7 @@ In summation: The data cleaning steps transformed raw data into a structured and
 |   2015 |       7 | MN            | Minnesota    | MRO           | East North Central |             1.2 | 2015-07-18 02:00:00 | 2015-07-19 07:00:00  |              1740 | severe weather     | nan                     |              250 |               250000 |         10.43 |   5.97034e+06 |          73.27 |           2279 |            2.14 |                     2760 |
 
 
-#### Univariate Analysis
+#### Univariate Analysis 
 For our univariate analysis, we coded an analysis for every variable in the dataset. One of the plots we found most interesting was the distribution of cause categories, as pictured below:
 
 <iframe
@@ -188,7 +188,6 @@ This essentially implies that there is a **significant difference** in the distr
   height="600"
   frameborder="0"
 ></iframe>
-
 
 
 <iframe
