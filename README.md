@@ -206,7 +206,7 @@ CUSTOMERS.AFFECTED    0.43
 DEMAND.LOSS.MW        0.59
 ```
 
-We see that both CUSTOMERS.AFFECTED and DEMAND.LOSS.MW have a significant portion of data missing. We are going to predict the outage duration for a given power outage, as this is associated with the severity of an outage. This will be a regression problem as we are attempting to predict the actual value of outage duration
+We see that both **CUSTOMERS.AFFECTED** and **DEMAND.LOSS.MW** have a significant portion of data missing. We are going to predict the outage duration for a given power outage, as this is associated with the severity of an outage. This will be a regression problem as we are attempting to predict the actual value of outage duration
 
 For our metric, we will use the **R<sup>2</sup>** value as it measures the correlation of our regression model. Although root mean squared error (**RMSE**) is also suitable as a metric for our regression model, the values of **RMSE** is unscaled, and it can be hard to interpret the values of the **RMSE** as compared to **R<sup>2</sup>** as it is a bounded to be between 0 and 1.
 
