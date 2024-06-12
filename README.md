@@ -92,7 +92,7 @@ For our univariate analysis, we coded an analysis for every variable in the data
   src="assets/fig1.univar_barplot.html"
   padding = 0
   width="1000"
-  height="800"
+  height="500"
   display=block
   frameborder="0"
 ></iframe>
@@ -114,7 +114,7 @@ We see that states like West Virginia and Michigan have significantly higher med
 
 For our bivariate analysis, we used a box plot to explore the differences in outage duration caused be different categories. Our choice of picking was between severe weather and intentional attacks, which we have pictured below:
 
-<iframe src="assets/fig2.bivar_boxplot.html" padding = 0 width="1000" height="800" frameborder="0" ></iframe>
+<iframe src="assets/fig2.bivar_boxplot.html" padding = 0 width="1000" height="500" frameborder="0" ></iframe>
 
 We see that with severe weather, there appears to be longer outages, both with a higher mean and a greater spread of durations, while intentional attacks tend to have shorter durations and fewer outliers.
 
