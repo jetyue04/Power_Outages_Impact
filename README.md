@@ -168,7 +168,7 @@ This essentially implies that there is a **significant difference** in the distr
 
 **Null Hypothesis:** There is **no** significant difference in the outage duration of major power outages when caused by severe weather and outages caused by intentional attacks
 
-**Alternative Hypothesis:** There **is** no significant difference in the outage duration of major power outages when caused by severe weather and outages caused by intentional attacks.
+**Alternative Hypothesis:** There **is** a significant difference in the outage duration of major power outages when caused by severe weather and outages caused by intentional attacks.
 
 **Population:** The total set of outage durations across all categories and events present in the original dataset. 
 
@@ -186,12 +186,12 @@ We see here that the distributions have similar shapes, which is why we decided 
 
 <iframe
   src="assets/fig7.ht_result.html"
-  width="800"
-  height="600"
+  width="1000"
+  height="45x0"
   frameborder="0"
 ></iframe>
 
-This plot shows us that there is a significant difference between the 2 cause categories.
+This plot shows us that there is a significant difference between the 2 cause categories, since our observed value is towards the far right of the plot.
 
 **Conclusion:** Since the P-value was 0.0 (< 0.05 significance level), we reject our null hypothesis that outage durations caused by severe weather has no significant difference to the outage durations caused by intentional attacks. This favours our alternative hypothesis, that there is in fact a significant difference in the outage duration caused by these different cause categories.
 
@@ -206,13 +206,9 @@ CUSTOMERS.AFFECTED    0.43
 DEMAND.LOSS.MW        0.59
 ```
 
-We can see that both CUSTOMERS.AFFECTED and DEMAND.LOSS.MW have significant portion of data missing. As our missing analysis concluded... In this way, we are going to predict the outage duration for a given power outage, as this is associated with the severity of an outage. This will be a regression problem as we are attempting to predict the actual value of outage duration
+We see that both CUSTOMERS.AFFECTED and DEMAND.LOSS.MW have a significant portion of data missing. We are going to predict the outage duration for a given power outage, as this is associated with the severity of an outage. This will be a regression problem as we are attempting to predict the actual value of outage duration
 
-For our metric, we will use the 
- value as it measures the correlation of our regression model. Although root mean squared error () is also suitable as a metric for our regression model, the values of 
- is unscaled, and it be hard to interpret the values of the 
- as compared to 
- as it is a bounded to be between 0 and 1.
+For our metric, we will use the $$ R^2 $$ value as it measures the correlation of our regression model. Although root mean squared error ($$ RMSE $$) is also suitable as a metric for our regression model, the values of $$ RMSE $$ is unscaled, and it can be hard to interpret the values of the $$ RMSE $$ as compared to $$ R^2 $$ as it is a bounded to be between 0 and 1.
 
 
 From our tests, we found that the outage duration varies significantly for severe weather and fuel supply emergency. However, fuel supply emergency is not significant in terms of its proportion in the outage causes, while severe weather is. Therefore, we are going to do a classification model on predicting whether or not a power outage is caused by 'severe weather'.
