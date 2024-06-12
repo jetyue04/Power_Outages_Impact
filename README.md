@@ -64,7 +64,7 @@ As you can see, there is a lot of missing data, and it's not the most interpreta
 
 1. Then, we combined the 'OUTAGE.START.DATE' and 'OUTAGE.START.TIME' columns into a single string for each row, handling missing values by replacing them with empty strings.
 2. We then converted the combined date-time strings into datetime objects, coercing invalid entries to NaT values (Not a Time)
-3. We are going to convert the hurricane names column to indicate whether or not there is a hurricane present
+3. We are going to make a column called 'is_hurricane' to indicate whether the cause category is a hurricane. This helps with answering our research question of choice. Then, we convert the hurricane names column to indicate whether or not there is a hurricane present. 
 4. Only take out columns we are interested in
 5. Check for unreasonable values:
     - Duration, Demand Loss and Customer affected should not be 0
