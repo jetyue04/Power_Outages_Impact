@@ -275,7 +275,6 @@ f1 score on test data: 0.7237204323380247
 Accuracy on training data: 0.7116095152603232
 Accuracy on test data: 0.6944336917562725
 ```
-
 For our baseline model, we used a linear regression model based on few variables to predict the outage duration. We used the following variables for simplicity sake:
 
 - CLIMATE.REGION: accounts for location - Some States have very limited data recorded and it would be unwise to divide each state by itself. This will be onehotencoded
