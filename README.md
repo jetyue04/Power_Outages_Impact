@@ -245,7 +245,7 @@ CUSTOMERS.AFFECTED    0.43
 DEMAND.LOSS.MW        0.59
 ```
 
-We can see that both cusotmers affected and demand loss (MW) have significant portion of data missing. As our missing analysis concluded... In this way, we are going to predict the outage duration for a given power outage, as this is associated with the severity of an outage. This will be a regression problem as we are attempting to predict the actual value of outage duration
+We can see that both CUSTOMERS.AFFECTED and DEMAND.LOSS.MW have significant portion of data missing. As our missing analysis concluded... In this way, we are going to predict the outage duration for a given power outage, as this is associated with the severity of an outage. This will be a regression problem as we are attempting to predict the actual value of outage duration
 
 For our metric, we will use the 
  value as it measures the correlation of our regression model. Although root mean squared error (
@@ -277,8 +277,13 @@ Accuracy on test data: 0.6944336917562725
 ```
 For our baseline model, we used a linear regression model based on few variables to predict the outage duration. We used the following variables for simplicity sake:
 
-- CLIMATE.REGION: accounts for location - Some States have very limited data recorded and it would be unwise to divide each state by itself. This will be onehotencoded
-- CAUSE.CATEGORY: This accounts for the different causes of the outage. We have shown that the outage duration is dependent/correlated to the cause of the outage in part 4. This will also be one-hot encoded.
-- MONTH: This accounts for the time of which the outage is occured. Since month is already in type float and is nominally sorted, we will treat it as is.
+- CLIMATE.REGION: accounts for location (Some states have limited data recorded - it would be unwise to divide each state by itself. This will be onehotencoded).
+- CAUSE.CATEGORY: accounts for different causes of the outage. (We have shown that the outage duration is correlated to the cause of the outage in our hypothesis test. This will also be one-hot encoded).
+- MONTH: accounts for the time of which the outage is occured. (Since month is already in type float and is nominally sorted, we will treat it as is).
+
+
+# Final Model
+
+
 
 
