@@ -87,18 +87,16 @@ In summation: The data cleaning steps transformed raw data into a structured and
 #### Univariate Analysis
 For our univariate analysis, we explored the following plots 
 
-<insert data>
-
 We explored a couple more plots for our univariate analysis, but one of utmost interest to us was to pictographically visualize average power outages across the United States, which we did through a geomap (pictured below). We used median power outages to get a general understanding of the distribution across states in the USA.
 
 <iframe
   src="assets/univar_choropleth.html"
   width="800"
   height="600"
-  frameborder="0"
-></iframe>
+  frameborder="0"></iframe>
 
-We see that states like West Virginia and Michigan have significantly higher median power outage duration compared to other regions in the United States, which poses an interesting question of why this could be taking place.
+
+    We see that states like West Virginia and Michigan have significantly higher median power outage duration compared to other regions in the United States, which poses an interesting question of why this could be taking place.
 
 
 #### Bivariate Analysis
@@ -112,7 +110,8 @@ For our bivariate analysis, we used a box plot to explore the differences in out
   frameborder="0"
 ></iframe>
 
-We see that with severe weather, there appears to be longer outages, both with a higher mean and a greater spread of durations, while intentional attacks tend to have shorter durations and fewer outliers.
+
+    We see that with severe weather, there appears to be longer outages, both with a higher mean and a greater spread of durations, while intentional attacks tend to have shorter durations and fewer outliers.
 
 
 
