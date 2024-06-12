@@ -112,8 +112,8 @@ For our bivariate analysis, we used a box plot to explore the differences in out
 
 <iframe
   src="assets/fig2.bivar_boxplot.html"
-  width="900"
-  height="700"
+  width="1000"
+  height="800"
   frameborder="0"
 ></iframe>
 We see that with severe weather, there appears to be longer outages, both with a higher mean and a greater spread of durations, while intentional attacks tend to have shorter durations and fewer outliers.
