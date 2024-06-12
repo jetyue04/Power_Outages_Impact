@@ -94,8 +94,6 @@ We explored a couple more plots for our univariate analysis, but one of utmost i
   width="800"
   height="600"
   frameborder="0"></iframe>
-
-
 We see that states like West Virginia and Michigan have significantly higher median power outage duration compared to other regions in the United States, which poses an interesting question of why this could be taking place.
 
 
@@ -109,7 +107,6 @@ For our bivariate analysis, we used a box plot to explore the differences in out
   height="600"
   frameborder="0"
 ></iframe>
-
 We see that with severe weather, there appears to be longer outages, both with a higher mean and a greater spread of durations, while intentional attacks tend to have shorter durations and fewer outliers.
 
 
