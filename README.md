@@ -267,7 +267,7 @@ First, we decided to implement a classification model using Logistic Regression 
 - OUTAGE DURATION F1 Score
 
 
-#### Results from our LogisticRegressor:
+### Results from our LogisticRegressor:
 
 ```
 f1 score on training data: 0.7391941509470169
@@ -288,7 +288,7 @@ In our final model, we encoded tests using a custom logistic regressor, a decisi
 
 Our results for each are as follows:
 
-#### Logistic Regression:
+### Logistic Regression:
 ```
 f1 score on training data: 0.7601331977301075
 f1 score on test data: 0.74431015253997
@@ -296,7 +296,7 @@ Accuracy on training data: 0.7404148550724637
 Accuracy on test data: 0.7229494584837545
 ```
 
-#### Decision Tree Classifier:
+### Decision Tree Classifier:
 ```
 f1 score on training data: 0.8044828429651232
 f1 score on test data: 0.7865718074276548
@@ -304,7 +304,7 @@ Accuracy on training data: 0.7912880434782608
 Accuracy on test data: 0.7716245487364622
 ```
 
-#### Random Forest Classifier:
+### Random Forest Classifier:
 
 ```
 f1 score on training data: 0.8328073100879739
@@ -315,7 +315,7 @@ Accuracy on test data: 0.7917942238267148
 
 We can see that the RandomForest performs the best of all the classifiers, in terms of both f1 score and accuracy on test data. 
 
-### Finding the best hyperparamters:
+## Finding the best hyperparamters:
 
 In order to find the best combination of hyperparameters to yield the best results, we used GridSearchCV to perform k-fold cross validation on our test data.
 
