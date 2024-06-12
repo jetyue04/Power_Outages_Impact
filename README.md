@@ -208,7 +208,7 @@ DEMAND.LOSS.MW        0.59
 
 We see that both CUSTOMERS.AFFECTED and DEMAND.LOSS.MW have a significant portion of data missing. We are going to predict the outage duration for a given power outage, as this is associated with the severity of an outage. This will be a regression problem as we are attempting to predict the actual value of outage duration
 
-For our metric, we will use the $$R^2$$ value as it measures the correlation of our regression model. Although root mean squared error (**RMSE**) is also suitable as a metric for our regression model, the values of **RMSE** is unscaled, and it can be hard to interpret the values of the **RMSE** as compared to $$R^2$$ as it is a bounded to be between 0 and 1.
+For our metric, we will use the **R<sup>2</sup>** value as it measures the correlation of our regression model. Although root mean squared error (**RMSE**) is also suitable as a metric for our regression model, the values of **RMSE** is unscaled, and it can be hard to interpret the values of the **RMSE** as compared to **R<sup>2</sup>** as it is a bounded to be between 0 and 1.
 
 
 From our tests, we found that the outage duration varies significantly for severe weather and fuel supply emergency. However, fuel supply emergency is not significant in terms of its proportion in the outage causes, while severe weather is. Therefore, we are going to do a classification model on predicting whether or not a power outage is caused by 'severe weather'.
@@ -297,11 +297,9 @@ grids.score(X_test, y_test)
 0.8220064724919093
 ```
 
-<iframe
-  src="assets/grid_data.html"
-  width="800"
-  height="600"
-  frameborder="0"></iframe>
+<iframe src="assets/grid_data.html" width="1000"  height="450"  frameborder="0"></iframe>
+
+# Fairness Analysis
 
 
 
