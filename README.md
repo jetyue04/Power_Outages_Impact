@@ -228,9 +228,9 @@ Accuracy on test data: 0.6944336917562725
 ```
 For our baseline model, we used a linear regression model based on few variables to predict the outage duration. We used the following variables for simplicity sake:
 
-- CLIMATE.REGION: accounts for location (Some states have limited data recorded - it would be unwise to divide each state by itself. This will be onehotencoded).
-- CAUSE.CATEGORY: accounts for different causes of the outage. (We have shown that the outage duration is correlated to the cause of the outage in our hypothesis test. This will also be one-hot encoded).
-- MONTH: accounts for the time of which the outage is occured. (Since month is already in type float and is nominally sorted, we will treat it as is).
+- CLIMATE.REGION: accounts for location (This will be onehotencoded).
+- CAUSE.CATEGORY: accounts for different causes of the outage. (This will also be one-hot encoded).
+- MONTH: accounts for the time of which the outage is occured. (Already in type float and nominally sorted).
 
 
 # Final Model
@@ -299,24 +299,25 @@ grids.score(X_test, y_test)
 For our fairness evaluation, we decided to assess if the model performs differently based on the season.
 
 **Null Hypothesis**: The model is fair; the absolute difference in F1 scores between winter and summer months is due to random chance. This implies that any observed performance difference between the two groups is not significant.
+
 **Alternative Hypothesis**: The model is unfair; the absolute difference in F1 scores between winter and summer months is significant and not due to random chance. This suggests that the model performs differently for winter and summer months in a way that is unlikely to be due to randomness.
 
 #### Choice of Groups
-  Group X: Winter months (December, January, February)
-  Group Y: Summer months (June, July, August)
+    Group X: Winter months (December, January, February)
+    Group Y: Summer months (June, July, August)
 
 #### Evaluation Metric
-  Metric: F1 Score
+    Metric: F1 Score
 
 #### Choice of Test Statistic
-  Test Statistic: Absolute difference in F1 scores between the groups.
+    Test Statistic: Absolute difference in F1 scores between the groups.
 
 #### Significance Level
-  α = 0.05
+    α = 0.05
 
 #### Permutation Test Results
-  Observed F1 score difference: 0.022343821249430018
-  P-value: 0.36
+    Observed F1 score difference: 0.022343821249430018
+    P-value: 0.36
 
 Our chosen significance level is 0.05, and since our p-value > 0.05, we concluded that there is no significant difference in F1 scores between winter and summer months. Hence we fail to reject our null hypothesis, and our models' performance is fair with respect to seasonal differences. 
 
