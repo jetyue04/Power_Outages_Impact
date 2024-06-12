@@ -91,6 +91,7 @@ For our univariate analysis, we coded an analysis for every variable in the data
 
 <iframe
   src="assets/fig1.univar_barplot.html"
+  padding = none
   width="1000"
   height="800"
   frameborder="0"
