@@ -189,6 +189,7 @@ This plot shows us that there is a significant difference between the 2 cause ca
 **Conclusion:** Since the P-value was 0.0 (< 0.05 significance level), we reject our null hypothesis that outage durations caused by severe weather has no significant difference to the outage durations caused by intentional attacks. This favours our alternative hypothesis, that there is in fact a significant difference in the outage duration caused by these different cause categories.
 
 
+# Prediction Problem
 #
 
 
