@@ -128,6 +128,8 @@ The following pivot table is a breakdown of the average outage duration by diffe
 |  6 | Southwest          |             113.8   |                    76   |              274.678 |      2      |         2275    |         11572.9  |                         370.375 |
 |  7 | West               |             524.81  |                  6154.6 |              886.267 |    214.857  |         2028.11 |          2928.37 |                         363.667 |
 |  8 | West North Central |              61     |                   nan   |               47     |     68.2    |          439.5  |          2442.5  |                         nan     |
+
+
 # Assessment of Missingness 
 
 ### NMAR Analysis 
