@@ -119,7 +119,6 @@ For our bivariate analysis, we used a box plot to explore the differences in out
 We see that with severe weather, there appears to be longer outages, both with a higher mean and a greater spread of durations, while intentional attacks tend to have shorter durations and fewer outliers.
 
 
-
 ### Interesting Aggregates
 The following pivot table is a breakdown of the average outage duration by different cause categories in different climate regions. It gives  some insight into the power grids across the country, and helps identify what cause category is most significant per climate region
 
