@@ -245,6 +245,26 @@ CUSTOMERS.AFFECTED    0.43
 DEMAND.LOSS.MW        0.59
 ```
 
+We can see that both cusotmers affected and demand loss (MW) have significant portion of data missing. As our missing analysis concluded... In this way, we are going to predict the outage duration for a given power outage, as this is associated with the severity of an outage. This will be a regression problem as we are attempting to predict the actual value of outage duration
+
+For our metric, we will use the 
+ value as it measures the correlation of our regression model. Although root mean squared error (
+) is also suitable as a metric for our regression model, the values of 
+ is unscaled, and it be hard to interpret the values of the 
+ as compared to 
+ as it is a bounded to be between 0 and 1.
+
+ ```
+OUTAGE.DURATION
+CAUSE.CATEGORY	
+equipment failure	            0.04
+fuel supply emergency	        0.03
+intentional attack	            0.24
+islanding	                    0.03
+public appeal	                0.05
+severe weather	                0.53
+system operability disruption	0.09
+ ```
 
 
 
