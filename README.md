@@ -187,7 +187,7 @@ We see here that the distributions have similar shapes, which is why we decided 
 <iframe
   src="assets/fig7.ht_result.html"
   width="1000"
-  height="45x0"
+  height="450"
   frameborder="0"
 ></iframe>
 
