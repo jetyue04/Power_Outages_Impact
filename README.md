@@ -16,7 +16,7 @@ We aim to answer the question of finding the characteristics of major power outa
 
 And we know it is hard to find a single answer to this question. So, we have narrowed our approach to be slightly more specific, with the following research question:
 
-##### Is there a significant difference in the mean outage duration between major power outages caused by severe weather, and major power outages caused by intentional attacks?
+#### Is there a significant difference in the mean outage duration between major power outages caused by severe weather, and major power outages caused by intentional attacks?
 
 This question aims to uncover whether the nature of the cause of the outage - whether it is natural or human induced, affects the duration of the power outage. The answer could potentially influence how resources are allocated for outage prevention, as well as inform strategies for improving the resilience of power infrastructure.
 
@@ -27,7 +27,7 @@ The working dataset we are using has <b><span style="color:red">**1534 rows**</s
 
 Shortly put - this is a lot of data 😬. 
 
-For our approach, we have compiled a list of the data we feel is most relevant to our research question -
+For our approach, we have compiled a list of the data we feel is most relevant to our research question:
 
 
 - OUTAGE.DURATION: Duration of the power outage in minutes.
@@ -35,10 +35,15 @@ For our approach, we have compiled a list of the data we feel is most relevant t
 - OUTAGE.START.DATE: Date when the outage started.
 - OUTAGE.RESTORATION.DATE: Date when power was restored.
 - CUSTOMERS.AFFECTED: Number of customers affected by the outage.
-- U.S._STATE/POSTAL.CODE: Location of the outage
+- U.S._STATE: Location of the outage
 - CLIMATE.REGION: Climate region of the outage location.
+- CLIMATE.CATEGORY: ...
 - ANOMALY.LEVEL: Climate anomaly level during the time of the outage.
+- RES.SALES, COM.SALES, IND.SALES: Electricity consumption patterns by residential, commercial, and industrial sectors.
+- TOTAL.SALES: Total electricity sales in the affected area.
+- PC.REALGSP.STATE: Per capita real Gross State Product.
 - POPULATION: Population of the affected area.
+- HURRICANE.NAMES: Although we don't necessarily care about the name of the hurricanes, the presence/absence of a hurricane can provide information regarding the cause and severity of the power outage
 
 
 # Data Cleaning and Exploratory Data Analysis
@@ -54,12 +59,12 @@ Below, we have displayed the first 5 rows of the original dataset:
 |         nan |   2015 |       7 | Minnesota    | MN            | MRO           | East North Central |             1.2 | warm               | 2015-07-18 00:00:00 | 02:00:00            | 2015-07-19 00:00:00       | 07:00:00                  | severe weather     | nan                     |               nan |              1740 |              250 |               250000 |       13.07 |       10.16 |        7.74 |         10.43 | 2.02888e+06 | 2.16161e+06 | 1.77794e+06 |   5.97034e+06 |      33.9826 |      36.2059 |      29.7795 |         2374674 |          289044 |            9812 |           2673531 |        88.8216 |        10.8113 |       0.367005 |              54431 |            49844 |          1.09203 |                 1.7 |           4873 |          292023 |       1.6687  |             2.2 |      5489594 |          73.27 |       15.28 |           2279 |      1700.5 |           18.2 |            2.14 |          0.6 |    91.5927 |         8.40733 |            5.47874 |
 
 
-As you can see, there is a lot of missing data, and it's not the most interpretable data. So with data cleaning, here are the changes we made:
+As you can see, there is a lot of missing data, and it's not the most interpretable data. We cleaned the data with the following steps:
 
 In the original dataset, there are several rows in the excel sheet encompassing a description of the data. We removed those rows before importing it into our notebook.
 1. Then, we combined the 'OUTAGE.START.DATE' and 'OUTAGE.START.TIME' columns into a single string for each row, handling missing values by replacing them with empty strings.
 2. We then converted the combined date-time strings into datetime objects, coercing invalid entries to NaT values (Not a Time)
-3. We made a column called 'is_hurricane' to indicate whether the cause category is a hurricane. This helps with answering our research question of choice. Then, we converted the hurricane names column to indicate whether or not there is a hurricane present. 
+3. We made a column called 'is_hurricane' to indicate whether the cause category is a hurricane. Then, we converted the hurricane names column to indicate whether or not there is a hurricane present. 
 4. We took out columns we are interested in
 5. We then checked for unreasonable values:
     - Duration, Demand Loss and Customer affected should not be 0
@@ -67,7 +72,7 @@ In the original dataset, there are several rows in the excel sheet encompassing 
     - REPLACE WITH NAN VALUES
 
 
-In summation: The data cleaning steps transformed raw data into a structured and analyzable format. By filling missing values, combining date and time columns, calculating outage durations, and standardizing categorical data, we ensured that the dataset is ready for meaningful analysis. These steps were essential for achieving accurate and reliable insights into the characteristics and severity of major power outages, ultimately aiding in the identification of risk factors for future outages.
+In summation: the data cleaning steps transformed raw data into a structured and analyzable format. By filling missing values, combining date and time columns, calculating outage durations, and standardizing categorical data, we ensured that the dataset is ready for meaningful analysis. These steps were essential for achieving accurate and reliable insights into the characteristics and severity of major power outages, ultimately aiding in the identification of risk factors for future outages.
 
 #### The first 5 rows of our cleaned data:
 
@@ -83,12 +88,12 @@ In summation: The data cleaning steps transformed raw data into a structured and
 #### Univariate Analysis 
 For our univariate analysis, we coded an analysis for every variable in the dataset. One of the plots we found most interesting was the distribution of cause categories, as pictured below:
 
-<iframe src="assets/fig1.univar_barplot.html"  width="1000" height="450"  frameborder="0"></iframe>
+<iframe src="assets/fig1.univar_barplot.html"  width="1050" height="450"  frameborder="0"></iframe>
 
 
 We explored a couple more plots for our univariate analysis, but one of utmost interest to us was to pictographically visualize average power outages across the United States, which we did through a geomap (pictured below). We used median power outages to get a general understanding of the distribution across states in the USA.
 
-<iframe src="assets/univar_choropleth.html"  width="1000" height="450"  frameborder="0"></iframe>
+<iframe src="assets/univar_choropleth.html"  width="1050" height="450"  frameborder="0"></iframe>
 We see that states like West Virginia and Michigan have significantly higher median power outage duration compared to other regions in the United States, which poses an interesting question of why this could be taking place.
 
 #### Bivariate Analysis
@@ -97,11 +102,11 @@ For our bivariate analysis, we used a box plot to explore the differences in out
 
 <iframe src="assets/fig2.bivar_boxplot.html"  width="1000" height="450" frameborder="0" ></iframe>
 
-We see that with severe weather, there appears to be longer outages, both with a higher mean and a greater spread of durations, while intentional attacks tend to have shorter durations and fewer outliers.
+We see that severe weather has a higher mean and a greater spread of durations, while intentional attacks tend to have shorter durations and fewer outliers.
 
 
 ### Interesting Aggregates
-The following pivot table is a breakdown of the average outage duration by different cause categories in different climate regions. It gives  some insight into the power grids across the country, and helps identify what cause category is most significant per climate region
+The following pivot table shows the **mean outage duration** for each cause category in each climate region.
 
 |    | CLIMATE.REGION     |   equipment failure |   fuel supply emergency |   intentional attack |   islanding |   public appeal |   severe weather |   system operability disruption |
 |---:|:-------------------|--------------------:|------------------------:|---------------------:|------------:|----------------:|-----------------:|--------------------------------:|
@@ -115,7 +120,7 @@ The following pivot table is a breakdown of the average outage duration by diffe
 |  7 | West               |             524.81  |                  6154.6 |              886.267 |    214.857  |         2028.11 |          2928.37 |                         363.667 |
 |  8 | West North Central |              61     |                   nan   |               47     |     68.2    |          439.5  |          2442.5  |                         nan     |
 
-
+An interesting observation is that the East North Central region has significantly higher observations than other regions.
 
 # Assessment of Missingness 
 
@@ -141,9 +146,9 @@ For our process of selecting which columns to explore missingness dependencies, 
 
 <iframe src="assets/fig4_missingness_heatmap.html" width="1000" height="450" frameborder="0" ></iframe>
 
-We decided to explore the missingness dependency of **CUSTOMERS.AFFECTED** on **CAUSE.CATEGORY**. Essentially, our claim is that the missingness of Customers Affected is MAR dependent on the cause. We performed a permutation test to answer this question, and used total variation as our test statistic of choice.
+From this heatmap, we see that DEMAND.LOSS.MW and CUSTOMERS.AFFECTED have a large proportion of missing data, while there is none in CAUSE.CATEGORY. Therefore, We decided to explore the missingness dependency of **CUSTOMERS.AFFECTED** on **CAUSE.CATEGORY**. We performed a permutation test to answer this question, and used total variation as our test statistic of choice.
 
-The following barplot graphs the observed distribution of **CAUSE.CATEOGRY** separated by the missingess of the respective number of customers affected. 
+The following barplot graphs the observed distribution of **CAUSE.CATEGORY** separated by the missingess of the respective number of customers affected. 
 
 <iframe src="assets/testplot.missingness_analysis.html" width="1000" height="450" frameborder="0" ></iframe>
 
