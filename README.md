@@ -85,14 +85,22 @@ In summation: The data cleaning steps transformed raw data into a structured and
 
 
 #### Univariate Analysis
-For our univariate analysis, we explored the following plots 
+For our univariate analysis, we coded an analysis for every variable in the dataset. One of the plots we found most interesting was the distribution of cause categories, as pictured below:
+
+<iframe
+  src="assets/fig1.univar_barplot.html"
+  width="900"
+  height="700"
+  frameborder="0"
+></iframe>
+
 
 We explored a couple more plots for our univariate analysis, but one of utmost interest to us was to pictographically visualize average power outages across the United States, which we did through a geomap (pictured below). We used median power outages to get a general understanding of the distribution across states in the USA.
 
 <iframe
   src="assets/univar_choropleth.html"
-  width="800"
-  height="600"
+  width="900"
+  height="700"
   frameborder="0"></iframe>
 We see that states like West Virginia and Michigan have significantly higher median power outage duration compared to other regions in the United States, which poses an interesting question of why this could be taking place.
 
@@ -103,8 +111,8 @@ For our bivariate analysis, we used a box plot to explore the differences in out
 
 <iframe
   src="assets/fig2.bivar_boxplot.html"
-  width="800"
-  height="600"
+  width="900"
+  height="700"
   frameborder="0"
 ></iframe>
 We see that with severe weather, there appears to be longer outages, both with a higher mean and a greater spread of durations, while intentional attacks tend to have shorter durations and fewer outliers.
@@ -144,7 +152,7 @@ Here is a list of the variables found in CAUSE.CATEGORY.DETAIL:
 
  [nan, 'vandalism', 'heavy wind', 'thunderstorm', 'winter storm', 'tornadoes', 'sabotage', 'hailstorm', 'uncontrolled loss', 'winter', 'wind storm', 'computer hardware', 'public appeal', 'storm', ' Coal', ' Natural Gas', 'hurricanes', 'wind/rain', 'snow/ice storm', 'snow/ice ', 'transmission interruption', 'flooding', 'transformer outage', 'generator trip', 'relaying malfunction', 'transmission trip', 'lightning', 'switching', 'shed load', 'line fault', 'breaker trip', 'wildfire', ' Hydro', 'majorsystem interruption', 'voltage reduction', 'transmission', 'Coal', 'substation', 'heatwave', 'distribution interruption', 'wind', 'suspicious activity', 'feeder shutdown', '100 MW loadshed', 'plant trip', 'fog', 'Hydro', 'earthquake', 'HVSubstation interruption', 'cables', 'Petroleum', 'thunderstorm; islanding', 'failure']
 
-__
+
 
 ### Missingness Dependency
 
