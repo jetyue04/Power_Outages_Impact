@@ -316,6 +316,7 @@ Accuracy on test data: 0.7917942238267148
 ```
 
 We can see that the RandomForest performs the best of all the classifiers, in terms of both f1 score and accuracy on test data. 
+Note: RandomForest was performed without GridSearchCV to get a rough comparison. 
 
 #### Finding the best hyperparamters:
 
@@ -329,7 +330,7 @@ In order to find the best combination of hyperparameters to yield the best resul
  'classifer__n_estimators': 200
 ```
 
-When comparing the training versus testing scores, we see a relatively high score for test data.  
+When comparing the training versus testing scores, we see a relatively high score for test data.   ADD: 1000 ITERATIONS, 4000 IN TOTAL, HENCE LONG RUN TIME
 
 #### Training data:
 ```py
@@ -341,6 +342,15 @@ grids.score(X_train, y_train)
 grids.score(X_test, y_test)
 0.8220064724919093
 ```
+
+
+<iframe
+  src="assets/grid_data.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 
 
 
