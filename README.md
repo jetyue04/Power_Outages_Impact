@@ -83,6 +83,7 @@ In summation: The data cleaning steps transformed raw data into a structured and
 |   2010 |      10 | MN            | MRO           | East North Central | cold               |            -1.5 | 2010-10-26 20:00:00 | 2010-10-28 22:00:00  |              3000 | severe weather     | heavy wind              |              nan |                70000 |          8.15 |   5.22212e+06 |          73.27 |           2279 |            2.14 | False          |
 |   2012 |       6 | MN            | MRO           | East North Central | normal             |            -0.1 | 2012-06-19 04:30:00 | 2012-06-20 23:00:00  |              2550 | severe weather     | thunderstorm            |              nan |                68200 |          9.19 |   5.78706e+06 |          73.27 |           2279 |            2.14 | False          |
 |   2015 |       7 | MN            | MRO           | East North Central | warm               |             1.2 | 2015-07-18 02:00:00 | 2015-07-19 07:00:00  |              1740 | severe weather     | nan                     |              250 |               250000 |         10.43 |   5.97034e+06 |          73.27 |           2279 |            2.14 | False          |
+
 ​
 
 #### Univariate Analysis 
