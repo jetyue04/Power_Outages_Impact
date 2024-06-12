@@ -127,6 +127,7 @@ The following pivot table is a breakdown of the average outage duration by diffe
 |  8 | West North Central |              61     |                   nan   |               47     |     68.2    |          439.5  |          2442.5  |                         nan     |
 
 
+
 # Assessment of Missingness 
 
 ### NMAR Analysis 
