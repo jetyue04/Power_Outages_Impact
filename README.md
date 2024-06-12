@@ -161,8 +161,8 @@ For our process of selecting which columns to explore missingness dependencies, 
 
 <iframe
   src="assets/fig4_missingness_heatmap.html"
-  width="800"
-  height="600"
+  width="1000"
+  height="800"
   frameborder="0"
 ></iframe>
 
