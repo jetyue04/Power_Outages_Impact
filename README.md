@@ -90,8 +90,8 @@ For our univariate analysis, we coded an analysis for every variable in the data
 
 <iframe
   src="assets/fig1.univar_barplot.html"
-  width="900"
-  height="700"
+  width="1000"
+  height="800"
   frameborder="0"
 ></iframe>
 
@@ -100,8 +100,8 @@ We explored a couple more plots for our univariate analysis, but one of utmost i
 
 <iframe
   src="assets/univar_choropleth.html"
-  width="900"
-  height="700"
+  width="1000"
+  height="800"
   frameborder="0"></iframe>
 We see that states like West Virginia and Michigan have significantly higher median power outage duration compared to other regions in the United States, which poses an interesting question of why this could be taking place.
 
