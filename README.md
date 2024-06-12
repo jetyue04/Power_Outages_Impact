@@ -102,7 +102,7 @@ We explored a couple more plots for our univariate analysis, but one of utmost i
 <iframe
   src="assets/univar_choropleth.html"
   width="1000"
-  height="800"
+  height="500"
   frameborder="0"></iframe>
 We see that states like West Virginia and Michigan have significantly higher median power outage duration compared to other regions in the United States, which poses an interesting question of why this could be taking place.
 
@@ -250,8 +250,7 @@ DEMAND.LOSS.MW        0.59
 We can see that both CUSTOMERS.AFFECTED and DEMAND.LOSS.MW have significant portion of data missing. As our missing analysis concluded... In this way, we are going to predict the outage duration for a given power outage, as this is associated with the severity of an outage. This will be a regression problem as we are attempting to predict the actual value of outage duration
 
 For our metric, we will use the 
- value as it measures the correlation of our regression model. Although root mean squared error (
-) is also suitable as a metric for our regression model, the values of 
+ value as it measures the correlation of our regression model. Although root mean squared error () is also suitable as a metric for our regression model, the values of 
  is unscaled, and it be hard to interpret the values of the 
  as compared to 
  as it is a bounded to be between 0 and 1.
