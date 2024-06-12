@@ -260,4 +260,26 @@ From our tests, we found that the outage duration varies significantly for sever
 
 # Baseline Model
 
+First, we decided to implement a classification model using Logistic Regression based on a few variables to predict whether or not an outage is caused by severe weather:
+
+- CLIMATE REGION
+- MONTH
+- OUTAGE DURATION F1 Score
+
+
+#### Results from our LogisticRegressor:
+
+```
+f1 score on training data: 0.7391941509470169
+f1 score on test data: 0.7237204323380247
+Accuracy on training data: 0.7116095152603232
+Accuracy on test data: 0.6944336917562725
+```
+
+For our baseline model, we used a linear regression model based on few variables to predict the outage duration. We used the following variables for simplicity sake:
+
+- CLIMATE.REGION: accounts for location - Some States have very limited data recorded and it would be unwise to divide each state by itself. This will be onehotencoded
+- CAUSE.CATEGORY: This accounts for the different causes of the outage. We have shown that the outage duration is dependent/correlated to the cause of the outage in part 4. This will also be one-hot encoded.
+- MONTH: This accounts for the time of which the outage is occured. Since month is already in type float and is nominally sorted, we will treat it as is.
+
 
