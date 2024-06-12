@@ -257,12 +257,12 @@ For our metric, we will use the
  ```
 OUTAGE.DURATION
 CAUSE.CATEGORY	
-equipment failure	            0.04
-fuel supply emergency	        0.03
-intentional attack	            0.24
-islanding	                    0.03
-public appeal	                0.05
-severe weather	                0.53
+equipment failure	0.04
+fuel supply emergency	0.03
+intentional attack	0.24
+islanding	0.03
+public appeal	0.05
+severe weather	0.53
 system operability disruption	0.09
  ```
 
