@@ -343,16 +343,11 @@ grids.score(X_test, y_test)
 0.8220064724919093
 ```
 
-
 <iframe
   src="assets/grid_data.html"
   width="800"
   height="600"
-  frameborder="0"
-></iframe>
-
-
-
+  frameborder="0"></iframe>
 
 
 
