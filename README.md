@@ -254,21 +254,8 @@ For our metric, we will use the
  as compared to 
  as it is a bounded to be between 0 and 1.
 
- ```
-OUTAGE.DURATION
-CAUSE.CATEGORY	
-equipment failure	0.04
-fuel supply emergency	0.03
-intentional attack	0.24
-islanding	0.03
-public appeal	0.05
-severe weather	0.53
-system operability disruption	0.09
- ```
 
-
-
-
+From our tests, we found that the outage duration varies significantly for severe weather and fuel supply emergency. However, fuel supply emergency is not significant in terms of its proportion in the outage causes, while severe weather is. Therefore, we are going to do a classification model on predicting whether or not a power outage is caused by 'severe weather'.
 
 
 
