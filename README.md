@@ -42,9 +42,6 @@ For our approach, we have compiled a list of the data we feel is most relevant t
 
 
 # Data Cleaning and Exploratory Data Analysis
-
-In the original dataset, there are several rows in the excel sheet encompassing a description of the data. We removed those rows before importing it into our notebook.
-
 Below, we have displayed the first 5 rows of the original dataset:
 
 
@@ -57,13 +54,14 @@ Below, we have displayed the first 5 rows of the original dataset:
 |         nan |   2015 |       7 | Minnesota    | MN            | MRO           | East North Central |             1.2 | warm               | 2015-07-18 00:00:00 | 02:00:00            | 2015-07-19 00:00:00       | 07:00:00                  | severe weather     | nan                     |               nan |              1740 |              250 |               250000 |       13.07 |       10.16 |        7.74 |         10.43 | 2.02888e+06 | 2.16161e+06 | 1.77794e+06 |   5.97034e+06 |      33.9826 |      36.2059 |      29.7795 |         2374674 |          289044 |            9812 |           2673531 |        88.8216 |        10.8113 |       0.367005 |              54431 |            49844 |          1.09203 |                 1.7 |           4873 |          292023 |       1.6687  |             2.2 |      5489594 |          73.27 |       15.28 |           2279 |      1700.5 |           18.2 |            2.14 |          0.6 |    91.5927 |         8.40733 |            5.47874 |
 
 
-As you can see, there is a lot of missing data, and it's not the most interpretable data. So with data cleaning, here are the changes we made -
+As you can see, there is a lot of missing data, and it's not the most interpretable data. So with data cleaning, here are the changes we made:
 
+In the original dataset, there are several rows in the excel sheet encompassing a description of the data. We removed those rows before importing it into our notebook.
 1. Then, we combined the 'OUTAGE.START.DATE' and 'OUTAGE.START.TIME' columns into a single string for each row, handling missing values by replacing them with empty strings.
 2. We then converted the combined date-time strings into datetime objects, coercing invalid entries to NaT values (Not a Time)
-3. We are going to make a column called 'is_hurricane' to indicate whether the cause category is a hurricane. This helps with answering our research question of choice. Then, we convert the hurricane names column to indicate whether or not there is a hurricane present. 
-4. Only take out columns we are interested in
-5. Check for unreasonable values:
+3. We made a column called 'is_hurricane' to indicate whether the cause category is a hurricane. This helps with answering our research question of choice. Then, we converted the hurricane names column to indicate whether or not there is a hurricane present. 
+4. We took out columns we are interested in
+5. We then checked for unreasonable values:
     - Duration, Demand Loss and Customer affected should not be 0
     - all other columns's value are checked
     - REPLACE WITH NAN VALUES
