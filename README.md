@@ -91,8 +91,8 @@ For our univariate analysis, we coded an analysis for every variable in the data
 <iframe
   src="assets/fig1.univar_barplot.html"
   padding = 0
-  width="1000"
-  height="500"
+  width="800"
+  height="600"
   display=block
   frameborder="0"
 ></iframe>
@@ -103,8 +103,8 @@ We explored a couple more plots for our univariate analysis, but one of utmost i
 <iframe
   src="assets/univar_choropleth.html"
   padding = 0
-  width="1000"
-  height="500"
+  width="800"
+  height="600"
   display=block
   frameborder="0"></iframe>
 We see that states like West Virginia and Michigan have significantly higher median power outage duration compared to other regions in the United States, which poses an interesting question of why this could be taking place.
@@ -113,7 +113,7 @@ We see that states like West Virginia and Michigan have significantly higher med
 
 For our bivariate analysis, we used a box plot to explore the differences in outage duration caused be different categories. Our choice of picking was between severe weather and intentional attacks, which we have pictured below:
 
-<iframe src="assets/fig2.bivar_boxplot.html" padding = 0 width="1000" height="500" frameborder="0" ></iframe>
+<iframe src="assets/fig2.bivar_boxplot.html" padding = 0 width="800" height="500" frameborder="0" ></iframe>
 
 We see that with severe weather, there appears to be longer outages, both with a higher mean and a greater spread of durations, while intentional attacks tend to have shorter durations and fewer outliers.
 
@@ -159,8 +159,8 @@ For our process of selecting which columns to explore missingness dependencies, 
 
 <iframe
   src="assets/fig4_missingness_heatmap.html"
-  width="1000"
-  height="800"
+  width="800"
+  height="500"
   frameborder="0"
 ></iframe>
 
@@ -171,7 +171,7 @@ The following barplot graphs the observed distribution of **CAUSE.CATEOGRY** sep
 <iframe
   src="assets/testplot.missingness_analysis.html"
   width="800"
-  height="600"
+  height="500"
   frameborder="0"
 ></iframe>
 
