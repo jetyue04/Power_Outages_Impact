@@ -64,8 +64,9 @@ As you can see, there is a lot of missing data, and it's not the most interpreta
 
 1. Then, we combined the 'OUTAGE.START.DATE' and 'OUTAGE.START.TIME' columns into a single string for each row, handling missing values by replacing them with empty strings.
 2. We then converted the combined date-time strings into datetime objects, coercing invalid entries to NaT values (Not a Time)
-3. Only take out columns we are interested in
-4. Check for unreasonable values:
+3. We are going to convert the hurricane names column to indicate whether or not there is a hurricane present
+4. Only take out columns we are interested in
+5. Check for unreasonable values:
     - Duration, Demand Loss and Customer affected should not be 0
     - all other columns's value are checked
     - REPLACE WITH NAN VALUES
@@ -75,14 +76,15 @@ In summation: The data cleaning steps transformed raw data into a structured and
 
 #### The first 5 rows of our cleaned data:
 
-|   YEAR |   MONTH | POSTAL.CODE   | U.S._STATE   | NERC.REGION   | CLIMATE.REGION     |   ANOMALY.LEVEL | OUTAGE.START        | OUTAGE.RESTORATION   |   OUTAGE.DURATION | CAUSE.CATEGORY     | CAUSE.CATEGORY.DETAIL   |   DEMAND.LOSS.MW |   CUSTOMERS.AFFECTED |   TOTAL.PRICE |   TOTAL.SALES |   POPPCT_URBAN |   POPDEN_URBAN |   AREAPCT_URBAN |   AVG_DURATION_PER_STATE |
-|-------:|--------:|:--------------|:-------------|:--------------|:-------------------|----------------:|:--------------------|:---------------------|------------------:|:-------------------|:------------------------|-----------------:|---------------------:|--------------:|--------------:|---------------:|---------------:|----------------:|-------------------------:|
-|   2011 |       7 | MN            | Minnesota    | MRO           | East North Central |            -0.3 | 2011-07-01 17:00:00 | 2011-07-03 20:00:00  |              3060 | severe weather     | nan                     |              nan |                70000 |          9.28 |   6.56252e+06 |          73.27 |           2279 |            2.14 |                     2760 |
-|   2014 |       5 | MN            | Minnesota    | MRO           | East North Central |            -0.1 | 2014-05-11 18:38:00 | 2014-05-11 18:39:00  |                 1 | intentional attack | vandalism               |              nan |                  nan |          9.28 |   5.28423e+06 |          73.27 |           2279 |            2.14 |                     2760 |
-|   2010 |      10 | MN            | Minnesota    | MRO           | East North Central |            -1.5 | 2010-10-26 20:00:00 | 2010-10-28 22:00:00  |              3000 | severe weather     | heavy wind              |              nan |                70000 |          8.15 |   5.22212e+06 |          73.27 |           2279 |            2.14 |                     2760 |
-|   2012 |       6 | MN            | Minnesota    | MRO           | East North Central |            -0.1 | 2012-06-19 04:30:00 | 2012-06-20 23:00:00  |              2550 | severe weather     | thunderstorm            |              nan |                68200 |          9.19 |   5.78706e+06 |          73.27 |           2279 |            2.14 |                     2760 |
-|   2015 |       7 | MN            | Minnesota    | MRO           | East North Central |             1.2 | 2015-07-18 02:00:00 | 2015-07-19 07:00:00  |              1740 | severe weather     | nan                     |              250 |               250000 |         10.43 |   5.97034e+06 |          73.27 |           2279 |            2.14 |                     2760 |
-
+|   YEAR |   MONTH | POSTAL.CODE   | NERC.REGION   | CLIMATE.REGION     | CLIMATE.CATEGORY   |   ANOMALY.LEVEL | OUTAGE.START        | OUTAGE.RESTORATION   |   OUTAGE.DURATION | CAUSE.CATEGORY     | CAUSE.CATEGORY.DETAIL   |   DEMAND.LOSS.MW |   CUSTOMERS.AFFECTED |   TOTAL.PRICE |   TOTAL.SALES |   POPPCT_URBAN |   POPDEN_URBAN |   AREAPCT_URBAN | is_hurricane   |
+|-------:|--------:|:--------------|:--------------|:-------------------|:-------------------|----------------:|:--------------------|:---------------------|------------------:|:-------------------|:------------------------|-----------------:|---------------------:|--------------:|--------------:|---------------:|---------------:|----------------:|:---------------|
+|   2011 |       7 | MN            | MRO           | East North Central | normal             |            -0.3 | 2011-07-01 17:00:00 | 2011-07-03 20:00:00  |              3060 | severe weather     | nan                     |              nan |                70000 |          9.28 |   6.56252e+06 |          73.27 |           2279 |            2.14 | False          |
+|   2014 |       5 | MN            | MRO           | East North Central | normal             |            -0.1 | 2014-05-11 18:38:00 | 2014-05-11 18:39:00  |                 1 | intentional attack | vandalism               |              nan |                  nan |          9.28 |   5.28423e+06 |          73.27 |           2279 |            2.14 | False          |
+|   2010 |      10 | MN            | MRO           | East North Central | cold               |            -1.5 | 2010-10-26 20:00:00 | 2010-10-28 22:00:00  |              3000 | severe weather     | heavy wind              |              nan |                70000 |          8.15 |   5.22212e+06 |          73.27 |           2279 |            2.14 | False          |
+|   2012 |       6 | MN            | MRO           | East North Central | normal             |            -0.1 | 2012-06-19 04:30:00 | 2012-06-20 23:00:00  |              2550 | severe weather     | thunderstorm            |              nan |                68200 |          9.19 |   5.78706e+06 |          73.27 |           2279 |            2.14 | False          |
+|   2015 |       7 | MN            | MRO           | East North Central | warm               |             1.2 | 2015-07-18 02:00:00 | 2015-07-19 07:00:00  |              1740 | severe weather     | nan                     |              250 |               250000 |         10.43 |   5.97034e+06 |          73.27 |           2279 |            2.14 | False          |
+​
+​
 
 #### Univariate Analysis 
 For our univariate analysis, we coded an analysis for every variable in the dataset. One of the plots we found most interesting was the distribution of cause categories, as pictured below:
