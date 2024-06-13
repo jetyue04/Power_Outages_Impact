@@ -83,7 +83,7 @@ In summation: the data cleaning steps transformed raw data into a structured and
 
 ​
 #### Univariate Analysis 
-For our univariate analysis, we plotted teh distribution for each in the cleaned dataset. One of the plots we found most interesting was the distribution of cause categories, as pictured below:
+For our univariate analysis, we plotted the distribution for each in the cleaned dataset. One of the plots we found most interesting was the distribution of cause categories, as pictured below:
 
 <iframe src="assets/fig1.univar_barplot.html"  width="1050" height="450"  frameborder="0"></iframe>
 
@@ -229,7 +229,7 @@ We can also observe the proportion of cause categories.
 | severe weather                |         0.530043  |
 | system operability disruption |         0.0858369 |
 
-We see that The outage duration varies significantly for severe weather and fuel supply emergency. However, fuel supply emergency is not significant in terms of its proportion in the outage causes, while severe weather is. Therefore, we are going to do a **binary classification model on predicting whether or not a power outage is caused by 'severe weather'**. This can help utility companies and emergency responders better prepare for and manage power outages by identifying potential weather-related risks in advance and allocating resources more effectively.
+We see that the outage duration varies significantly for severe weather and fuel supply emergency. However, fuel supply emergency is not significant in terms of its proportion in the outage causes, while severe weather is. Therefore, we are going to do a **binary classification model on predicting whether or not a power outage is caused by 'severe weather'**. This can help utility companies and emergency responders better prepare for and manage power outages by identifying potential weather-related risks in advance and allocating resources more effectively.
 
 We will use **F1 score** as our metric as the distribution of cause cateogry is not very balanced. Using F1 Score will help us account for this imbalance as it accounts for recall and precision.
 
