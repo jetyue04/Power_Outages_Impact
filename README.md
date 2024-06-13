@@ -344,9 +344,10 @@ For our fairness evaluation, we decided to assess if the model performs differen
     Observed F1 score difference: 0.022343821249430018
     P-value: 0.36
 
-Our chosen significance level is 0.05, and since our p-value > 0.05, we concluded that there is no significant difference in F1 scores between winter and summer months. Hence we fail to reject our null hypothesis, and our models' performance is fair with respect to seasonal differences. 
-
 <iframe src="assets/fig9.fairness_eval.html" width="1050"  height="450"  frameborder="0"></iframe>
+
+#### Conclusion
+Our chosen significance level is 0.05, and since our p-value > 0.05, we concluded that there is no significant difference in F1 scores between winter and summer months. Hence we fail to reject our null hypothesis, and our models' performance is fair with respect to seasonal differences. 
 
 
 
