@@ -35,10 +35,9 @@ For our approach, we have compiled a list of the data we feel is most relevant t
 - OUTAGE.START.DATE: Date when the outage started.
 - OUTAGE.RESTORATION.DATE: Date when power was restored.
 - CUSTOMERS.AFFECTED: Number of customers affected by the outage.
-- U.S._STATE: Location of the outage
+- U.S._STATE: State in which the outage happened
 - CLIMATE.REGION: Climate region of the outage location.
-- CLIMATE.CATEGORY: ...
-- ANOMALY.LEVEL: Climate anomaly level during the time of the outage.
+- CLIMATE.CATEGORY: The climate conditions corresponding to previous years, categorized as "Warm," "Cold," or "Normal"
 - RES.SALES, COM.SALES, IND.SALES: Electricity consumption patterns by residential, commercial, and industrial sectors.
 - TOTAL.SALES: Total electricity sales in the affected area.
 - PC.REALGSP.STATE: Per capita real Gross State Product.
@@ -59,13 +58,13 @@ Below, we have displayed the first 5 rows of the original dataset:
 |         nan |   2015 |       7 | Minnesota    | MN            | MRO           | East North Central |             1.2 | warm               | 2015-07-18 00:00:00 | 02:00:00            | 2015-07-19 00:00:00       | 07:00:00                  | severe weather     | nan                     |               nan |              1740 |              250 |               250000 |       13.07 |       10.16 |        7.74 |         10.43 | 2.02888e+06 | 2.16161e+06 | 1.77794e+06 |   5.97034e+06 |      33.9826 |      36.2059 |      29.7795 |         2374674 |          289044 |            9812 |           2673531 |        88.8216 |        10.8113 |       0.367005 |              54431 |            49844 |          1.09203 |                 1.7 |           4873 |          292023 |       1.6687  |             2.2 |      5489594 |          73.27 |       15.28 |           2279 |      1700.5 |           18.2 |            2.14 |          0.6 |    91.5927 |         8.40733 |            5.47874 |
 
 
-As you can see, there is a lot of missing data, and it's not the most interpretable data. We cleaned the data with the following steps:
+As you can see, there is a lot of missing data, and it's not the most interpretable data. Therefore, we cleaned the data with the following steps:
 
 In the original dataset, there are several rows in the excel sheet encompassing a description of the data. We removed those rows before importing it into our notebook.
-1. Then, we combined the 'OUTAGE.START.DATE' and 'OUTAGE.START.TIME' columns into a single string for each row, handling missing values by replacing them with empty strings.
-2. We then converted the combined date-time strings into datetime objects, coercing invalid entries to NaT values (Not a Time)
-3. We made a column called 'is_hurricane' to indicate whether the cause category is a hurricane. Then, we converted the hurricane names column to indicate whether or not there is a hurricane present. 
-4. We took out columns we are interested in
+1. Combine the 'OUTAGE.START.DATE' and 'OUTAGE.START.TIME' columns into a single string for each row, handling missing values by replacing them with empty strings.
+2. Convert the combined date-time strings into datetime objects, coercing invalid entries to NaT values (Not a Time)
+3. Created new column called 'is_hurricane' to indicate if outage is associated with a hurricane. This is done by checking if hurricane name is missing.
+4. Extracted columns of interest
 5. We then checked for unreasonable values:
     - Duration, Demand Loss and Customer affected should not be 0
     - all other columns's value are checked
@@ -86,23 +85,26 @@ In summation: the data cleaning steps transformed raw data into a structured and
 
 ​
 #### Univariate Analysis 
-For our univariate analysis, we coded an analysis for every variable in the dataset. One of the plots we found most interesting was the distribution of cause categories, as pictured below:
+For our univariate analysis, we plotted the distribution for each in the cleaned dataset. One of the plots we found most interesting was the distribution of cause categories, as pictured below:
 
 <iframe src="assets/fig1.univar_barplot.html"  width="1050" height="450"  frameborder="0"></iframe>
 
+As we can see in the graph above, most of the outages are caused by severe weather and intentional attacks.
 
-We explored a couple more plots for our univariate analysis, but one of utmost interest to us was to pictographically visualize average power outages across the United States, which we did through a geomap (pictured below). We used median power outages to get a general understanding of the distribution across states in the USA.
+We also explored a couple more plots for our univariate analysis, but one of utmost interest to us was to pictographically visualize average power outages across the United States, which we did through a geomap (pictured below). We used median power outages to get a general understanding of the distribution across states in the USA.
+
 
 <iframe src="assets/univar_choropleth.html"  width="1050" height="450"  frameborder="0"></iframe>
-We see that states like West Virginia and Michigan have significantly higher median power outage duration compared to other regions in the United States, which poses an interesting question of why this could be taking place.
+We see that states on the westcoast have significantly higher median power outage duration compared to east coast in the United States, which poses an interesting question of why this could be taking place.
+
 
 #### Bivariate Analysis
 
-For our bivariate analysis, we used a box plot to explore the differences in outage duration caused be different categories. Our choice of picking was between severe weather and intentional attacks, which we have pictured below:
+For our bivariate analysis, we used a box plot to explore the differences in outage duration caused by different categories. Our choice of picking was between severe weather and intentional attacks, which we have pictured below:
 
-<iframe src="assets/fig2.bivar_boxplot.html"  width="1000" height="450" frameborder="0" ></iframe>
+<iframe src="assets/fig2.bivar_boxplot.html"  width="1050" height="450" frameborder="0" ></iframe>
 
-We see that severe weather has a higher mean and a greater spread of durations, while intentional attacks tend to have shorter durations and fewer outliers.
+We see that severe weather has a higher mean and a greater spread of durations, while intentional attacks tend to have shorter durations and fewer outliers. This can later be tested in our hypothesis test on whether or not they originate from the same distribution.
 
 
 ### Interesting Aggregates
@@ -120,7 +122,7 @@ The following pivot table shows the **mean outage duration** for each cause cate
 |  7 | West               |             524.81  |                  6154.6 |              886.267 |    214.857  |         2028.11 |          2928.37 |                         363.667 |
 |  8 | West North Central |              61     |                   nan   |               47     |     68.2    |          439.5  |          2442.5  |                         nan     |
 
-An interesting observation is that the East North Central region has significantly higher observations than other regions.
+An interesting observation is that the East North Central region has significantly higher observations than other regions. This result is intersting to perform a permutation test on it.
 
 # Assessment of Missingness 
 
@@ -142,23 +144,26 @@ Here is a list of the variables found in CAUSE.CATEGORY.DETAIL:
 
 ### Missingness Dependency
 
-For our process of selecting which columns to explore missingness dependencies, we genereated a heatmap to visualize details:
+For our process of selecting which columns to explore missingness dependencies, we genereated a heatmap to visualize its proportion of missing values:
 
-<iframe src="assets/fig4_missingness_heatmap.html" width="1000" height="450" frameborder="0" ></iframe>
+<iframe src="assets/fig4_missingness_heatmap.html" width="1050" height="450" frameborder="0" ></iframe>
 
-From this heatmap, we see that DEMAND.LOSS.MW and CUSTOMERS.AFFECTED have a large proportion of missing data, while there is none in CAUSE.CATEGORY. Therefore, We decided to explore the missingness dependency of **CUSTOMERS.AFFECTED** on **CAUSE.CATEGORY**. We performed a permutation test to answer this question, and used total variation as our test statistic of choice.
+From this heatmap, we see that DEMAND.LOSS.MW and CUSTOMERS.AFFECTED have a large proportion of missing data, while there is none in CAUSE.CATEGORY. Therefore, We decided to explore the missingness dependency of **CUSTOMERS.AFFECTED** on **CAUSE.CATEGORY**. We performed a **permutation test** to answer this question, and used **total variation distance (TVD)** as our test statistic of choice.
 
-The following barplot graphs the observed distribution of **CAUSE.CATEGORY** separated by the missingess of the respective number of customers affected. 
+In summary:
+**Test Statistic:** total variation distance
 
-<iframe src="assets/testplot.missingness_analysis.html" width="1000" height="450" frameborder="0" ></iframe>
+**Significance Level:** 0.05
+
+**Observed Test Statistic:** 0.7557790341210083
+
+The following histogram shows the observed distribution of **CAUSE.CATEGORY** separated by the missingess of the respective number of customers affected. 
+
+<iframe src="assets/testplot.missingness_analysis.html" width="1050" height="450" frameborder="0" ></iframe>
 
 This is the observed distribution of permutation TVD's against our observed TVD. We see that our observed TVD (the red line) is situated to the right of main (blue) distribution, which indicates that our test generated a p-value of 0 (approximately).
 
-This essentially implies that there is a **significant difference** in the distribution of customers affected and cause category. We can conclude that CUSTOMERS.AFFECTED is likely dependent on the values of CAUSE.CATEGORY, making it MAR dependent. 
-
-
-
-<iframe src="assets/fig5a.tvd.html" width="1000" height="450" frameborder="0" ></iframe>
+This essentially implies that there is a **significant difference** in the distribution of customers affected and cause category. We can conclude that CUSTOMERS.AFFECTED is likely dependent on the values of CAUSE.CATEGORY, making it **MAR dependent**. 
 
 #### Dependency Visualization:
 <iframe src="assets/fig5b_hist.html" width="1000" height="450" frameborder="0"></iframe>
@@ -166,19 +171,23 @@ This essentially implies that there is a **significant difference** in the distr
 
 # Hypothesis Testing
 
-**Null Hypothesis:** There is **no** significant difference in the outage duration of major power outages when caused by severe weather and outages caused by intentional attacks
+From our EDA, we observed that severe weather and intentional attack had the higest proportion of all cause categories, yet their mean outage duration differs signifcantly. As such, we will do a **permutation test** to determine whether or not they originate from the same distribution and the observed difference is due to random chance.
 
-**Alternative Hypothesis:** There **is** a significant difference in the outage duration of major power outages when caused by severe weather and outages caused by intentional attacks.
+**Null Hypothesis:** The outage duration caused by severe weather and the outage duration caused by intentional attacks originate from the same distribution.
+
+**Alternative Hypothesis:** The outage duration caused by severe weather and the outage duration caused by intentional attacks **do not** originate from the same distribution.
 
 **Population:** The total set of outage durations across all categories and events present in the original dataset. 
 
 **Sample size:** Subset of outage durations caused by severe weather and intentional attacks
 
-<iframe src="assets/fig6.hypothesis_test.html" width="1000" height="450" frameborder="0"></iframe>
+<iframe src="assets/fig6.hypothesis_test.html" width="1050" height="450" frameborder="0"></iframe>
 
-We see here that the distributions have similar shapes, which is why we decided to use absolute difference in means as our test statistic.
+To determine our test statistic, we plotted the distribution of outage duration for each labels. Here, we see observe that the distributions have similar shapes, leading us to choose absolute difference in means as our test statistic.
 
 **Test Statistic:** Absolute difference in means 
+
+**Observed Test statistic:** 3377.776116612198
 
 **Significance Level:** 0.05
 
@@ -186,41 +195,56 @@ We see here that the distributions have similar shapes, which is why we decided 
 
 <iframe
   src="assets/fig7.ht_result.html"
-  width="1000"
+  width="1050"
   height="450"
   frameborder="0"
 ></iframe>
 
 This plot shows us that there is a significant difference between the 2 cause categories, since our observed value is towards the far right of the plot.
 
-**Conclusion:** Since the P-value was 0.0 (< 0.05 significance level), we reject our null hypothesis that outage durations caused by severe weather has no significant difference to the outage durations caused by intentional attacks. This favours our alternative hypothesis, that there is in fact a significant difference in the outage duration caused by these different cause categories.
+**Conclusion:** Since the P-value was 0.0 (< 0.05 significance level), we reject our null hypothesis that outage durations caused by severe weather and outage duration caused by intentional attacks originate from the same distribution. This favours our alternative hypothesis, that there is in fact the two distributions originate from different distributions.
 
 
 # Framing the Prediction Model
 
-After investigating the relationship of outage duration with regards to the cause of the power outage as well as the region in which it occured, we decided to build upon this investigation. As such, we will make a predictive model to determine the severity of a power outage. There are three given variables that act as a proxy/measure for the severity, CUSTOMERS.AFFECTED, DEMAND.LOSS.MW and OUTAGE.DURATION.
+Following our investigation on the outage duration in relation to the cause of the power outage as well as the region in iwhich it occured, we see that there is a significant effect on outage duration by the outage being caused by severe weather. 
 
-```
-OUTAGE.DURATION       0.09
-CUSTOMERS.AFFECTED    0.43
-DEMAND.LOSS.MW        0.59
-```
+Looking at it further, we can look at the mean outage duration for each cause category:
 
-We see that both **CUSTOMERS.AFFECTED** and **DEMAND.LOSS.MW** have a significant portion of data missing. We are going to predict the outage duration for a given power outage, as this is associated with the severity of an outage. This will be a regression problem as we are attempting to predict the actual value of outage duration
+| CAUSE.CATEGORY                |   OUTAGE.DURATION |
+|:------------------------------|------------------:|
+| equipment failure             |             224   |
+| fuel supply emergency         |            3960   |
+| intentional attack            |              92.5 |
+| islanding                     |              77.5 |
+| public appeal                 |             455   |
+| severe weather                |            2464   |
+| system operability disruption |             222   |
 
-For our metric, we will use the **R<sup>2</sup>** value as it measures the correlation of our regression model. Although root mean squared error (**RMSE**) is also suitable as a metric for our regression model, the values of **RMSE** is unscaled, and it can be hard to interpret the values of the **RMSE** as compared to **R<sup>2</sup>** as it is a bounded to be between 0 and 1.
 
+We can also observe the proportion of cause categories. 
 
-From our tests, we found that the outage duration varies significantly for severe weather and fuel supply emergency. However, fuel supply emergency is not significant in terms of its proportion in the outage causes, while severe weather is. Therefore, we are going to do a classification model on predicting whether or not a power outage is caused by 'severe weather'.
+| CAUSE.CATEGORY                |   OUTAGE.DURATION |
+|:------------------------------|------------------:|
+| equipment failure             |         0.0386266 |
+| fuel supply emergency         |         0.0271817 |
+| intentional attack            |         0.237482  |
+| islanding                     |         0.0314735 |
+| public appeal                 |         0.0493562 |
+| severe weather                |         0.530043  |
+| system operability disruption |         0.0858369 |
 
+We see that The outage duration varies significantly for severe weather and fuel supply emergency. However, fuel supply emergency is not significant in terms of its proportion in the outage causes, while severe weather is. Therefore, we are going to do a **binary classification model on predicting whether or not a power outage is caused by 'severe weather'**. This can help utility companies and emergency responders better prepare for and manage power outages by identifying potential weather-related risks in advance and allocating resources more effectively.
+
+We will use **F1 score** as our metric as the distribution of cause cateogry is not very balanced. Using F1 Score will help us account for this imbalance as it accounts for recall and precision.
 
 # Baseline Model
 
-First, we decided to implement a classification model using Logistic Regression based on a few variables to predict whether or not an outage is caused by severe weather:
+First, we decided to implement a classification model using Logistic Regression based on the following variables to predict whether or not an outage is caused by severe weather:
 
-- CLIMATE REGION
-- MONTH
-- OUTAGE DURATION F1 Score
+- CLIMATE REGION (Nominal): This will help us account for any geographic significance for any severe weather-related power outages.  
+- MONTH: Weather may be more or less favorable/severe in certain periods
+- OUTAGE DURATION: Severe weather related power outages may have correlatoin with outage duration.
 
 
 ### Results from our LogisticRegressor:
@@ -236,7 +260,6 @@ For our baseline model, we used a linear regression model based on few variables
 - CLIMATE.REGION: accounts for location (This will be onehotencoded).
 - CAUSE.CATEGORY: accounts for different causes of the outage. (This will also be one-hot encoded).
 - MONTH: accounts for the time of which the outage is occured. (Already in type float and nominally sorted).
-
 
 # Final Model
 
@@ -280,24 +303,24 @@ For our GridSearchCV test, we performed 1000 iterations per test, yielding 4000 
 ### Results from GridSearchCV:
 
 ```
- 'classifer__criterion': 'gini',
+ 'classifer__criterion': 'entropy',
  'classifer__max_depth': 15,
- 'classifer__n_estimators': 200
+ 'classifer__n_estimators': 15
 ```
 
 When comparing the training versus testing scores, we see a relatively high score for test data.   
 #### Training data:
 ```py
 grids.score(X_train, y_train)
-0.9896551724137932
+0.9798657718120805
 ```
 #### Testing data:
 ```py
 grids.score(X_test, y_test)
-0.8220064724919093
+0.8409893992932863
 ```
 
-<iframe src="assets/grid_data.html" width="1000"  height="450"  frameborder="0"></iframe>
+<iframe src="assets/grid_data.html" width="1050"  height="450"  frameborder="0"></iframe>
 
 # Fairness Analysis
 
@@ -326,7 +349,7 @@ For our fairness evaluation, we decided to assess if the model performs differen
 
 Our chosen significance level is 0.05, and since our p-value > 0.05, we concluded that there is no significant difference in F1 scores between winter and summer months. Hence we fail to reject our null hypothesis, and our models' performance is fair with respect to seasonal differences. 
 
-<iframe src="assets/fig9.fairness_eval.html" width="1000"  height="450"  frameborder="0"></iframe>
+<iframe src="assets/fig9.fairness_eval.html" width="1050"  height="450"  frameborder="0"></iframe>
 
 
 
