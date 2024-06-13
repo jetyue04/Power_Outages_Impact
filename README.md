@@ -4,14 +4,13 @@
 
 # Introduction
 
-Hello! Welcome to our analysis of power outages across the United States. The core of this project's data consists of detailed records of major power outages in the United States, which contains information about the causes of these outages, their duration, the number of people/consumers impacted, and various other socio-economic factors related to the impacted regions. 
+Welcome to our analysis of power outages across the United States. The core of this project's data consists of detailed records of major power outages in the United States, which contains information about the causes of these outages, their duration, the number of people/consumers impacted, and various other socio-economic factors related to the impacted regions. 
 
-Power outages are significant events, and can disrupt daily life, impact economic activities, and potentially pose risks to health and safety - especially ones on larger scales.
 <br>
 
 <center><img src = "https://i.ytimg.com/vi/eSmUwjGs738/maxresdefault.jpg" width = 500></center>
 
-We aim to answer the question of finding the characteristics of major power outages with high severity, and whay risk factors an energy company might want to look into when predicting the location/severity of its next major power outage.
+Power outages are significant events, and can disrupt daily life, impact economic activities, and potentially pose risks to health and safety - especially ones on larger scales. We aim to answer the question of finding the characteristics of major power outages with high severity, and whay risk factors an energy company might want to look into when predicting the location/severity of its next major power outage.
 
 
 And we know it is hard to find a single answer to this question. So, we have narrowed our approach to be slightly more specific, with the following research question:
@@ -21,13 +20,13 @@ And we know it is hard to find a single answer to this question. So, we have nar
 This question aims to uncover whether the nature of the cause of the outage - whether it is natural or human induced, affects the duration of the power outage. The answer could potentially influence how resources are allocated for outage prevention, as well as inform strategies for improving the resilience of power infrastructure.
 
 
-Before we take a look into our project, here is a brief introduction of what the data is!
+Before we delve into our project, here is a brief summary of our dataset:
 
-The working dataset we are using has <b><span style="color:red">**1534 rows**</span></b> and <b><span style="color:blue">**36 columns**</span></b>. 
+The working dataset we are using has <b><span style="color:red">**1536 rows**</span></b> and <b><span style="color:blue">**56 columns**</span></b>. 
 
 Shortly put - this is a lot of data 😬. 
 
-For our approach, we have compiled a list of the data we feel is most relevant to our research question:
+For our approach, we have compiled a list of the data we feel is most relevant to our research question -
 
 
 - OUTAGE.DURATION: Duration of the power outage in minutes.
@@ -70,7 +69,6 @@ In the original dataset, there are several rows in the excel sheet encompassing 
     - all other columns's value are checked
     - REPLACE WITH NAN VALUES
 
-
 In summation: the data cleaning steps transformed raw data into a structured and analyzable format. By filling missing values, combining date and time columns, calculating outage durations, and standardizing categorical data, we ensured that the dataset is ready for meaningful analysis. These steps were essential for achieving accurate and reliable insights into the characteristics and severity of major power outages, ultimately aiding in the identification of risk factors for future outages.
 
 #### The first 5 rows of our cleaned data:
@@ -85,24 +83,23 @@ In summation: the data cleaning steps transformed raw data into a structured and
 
 ​
 #### Univariate Analysis 
-For our univariate analysis, we plotted the distribution for each in the cleaned dataset. One of the plots we found most interesting was the distribution of cause categories, as pictured below:
+For our univariate analysis, we plotted teh distribution for each in the cleaned dataset. One of the plots we found most interesting was the distribution of cause categories, as pictured below:
 
 <iframe src="assets/fig1.univar_barplot.html"  width="1050" height="450"  frameborder="0"></iframe>
+
 
 As we can see in the graph above, most of the outages are caused by severe weather and intentional attacks.
 
 We also explored a couple more plots for our univariate analysis, but one of utmost interest to us was to pictographically visualize average power outages across the United States, which we did through a geomap (pictured below). We used median power outages to get a general understanding of the distribution across states in the USA.
 
-
 <iframe src="assets/univar_choropleth.html"  width="1050" height="450"  frameborder="0"></iframe>
 We see that states on the westcoast have significantly higher median power outage duration compared to east coast in the United States, which poses an interesting question of why this could be taking place.
 
-
 #### Bivariate Analysis
 
-For our bivariate analysis, we used a box plot to explore the differences in outage duration caused by different categories. Our choice of picking was between severe weather and intentional attacks, which we have pictured below:
+For our bivariate analysis, we used a box plot to explore the differences in outage duration caused be different categories. Our choice of picking was between severe weather and intentional attacks, which we have pictured below:
 
-<iframe src="assets/fig2.bivar_boxplot.html"  width="1050" height="450" frameborder="0" ></iframe>
+<iframe src="assets/fig2.bivar_boxplot.html"  width="1000" height="450" frameborder="0" ></iframe>
 
 We see that severe weather has a higher mean and a greater spread of durations, while intentional attacks tend to have shorter durations and fewer outliers. This can later be tested in our hypothesis test on whether or not they originate from the same distribution.
 
@@ -127,14 +124,13 @@ An interesting observation is that the East North Central region has significant
 # Assessment of Missingness 
 
 ### NMAR Analysis 
-As per our analysis of the columns in this dataset, we observed that the column CAUSE.CATEGORY.DETAILS is potentially displaying NMAR. There are several inconsistencies in the data entry for this column, which make it appear as though it was manually entered by the researchers. For example, there are several variations of CAUSE.CATEGORY.DETAILS containing 'wind' such as: 
+As per our analysis of the columns in this dataset, we observed that the column CAUSE.CATEGORY.DETAILS is potentially displaying NMAR. There are several inconsistencies in the data entry for this column, which make it appear as though it was manually entered by the researchers. For example, there are several variations of CAUSE.CATEGORY.DETAILS containing similar words such as: 
 - 'heavy wind', 'wind storm', 'wind', 'wind/rain' 
 - 'snow/ice ', 'snow/ice storm' 
 
 which are variations of the same cause category. 
 
 Another example would be errors in the spacing of entries. For example, 'Hydro' and ' Hydro' are both unique entries in the column even though it is essentially the same cause category.
-
 
 Here is a list of the variables found in CAUSE.CATEGORY.DETAIL:
 
@@ -146,7 +142,7 @@ Here is a list of the variables found in CAUSE.CATEGORY.DETAIL:
 
 For our process of selecting which columns to explore missingness dependencies, we genereated a heatmap to visualize its proportion of missing values:
 
-<iframe src="assets/fig4_missingness_heatmap.html" width="1050" height="450" frameborder="0" ></iframe>
+<iframe src="assets/fig4_missingness_heatmap.html" width="1000" height="450" frameborder="0" ></iframe>
 
 From this heatmap, we see that DEMAND.LOSS.MW and CUSTOMERS.AFFECTED have a large proportion of missing data, while there is none in CAUSE.CATEGORY. Therefore, We decided to explore the missingness dependency of **CUSTOMERS.AFFECTED** on **CAUSE.CATEGORY**. We performed a **permutation test** to answer this question, and used **total variation distance (TVD)** as our test statistic of choice.
 
@@ -159,11 +155,13 @@ In summary:
 
 The following histogram shows the observed distribution of **CAUSE.CATEGORY** separated by the missingess of the respective number of customers affected. 
 
-<iframe src="assets/testplot.missingness_analysis.html" width="1050" height="450" frameborder="0" ></iframe>
+<iframe src="assets/testplot.missingness_analysis.html" width="1000" height="450" frameborder="0" ></iframe>
 
 This is the observed distribution of permutation TVD's against our observed TVD. We see that our observed TVD (the red line) is situated to the right of main (blue) distribution, which indicates that our test generated a p-value of 0 (approximately).
 
 This essentially implies that there is a **significant difference** in the distribution of customers affected and cause category. We can conclude that CUSTOMERS.AFFECTED is likely dependent on the values of CAUSE.CATEGORY, making it **MAR dependent**. 
+
+<iframe src="assets/fig5a.tvd.html" width="1000" height="450" frameborder="0" ></iframe>
 
 
 # Hypothesis Testing
@@ -178,7 +176,7 @@ From our EDA, we observed that severe weather and intentional attack had the hig
 
 **Sample size:** Subset of outage durations caused by severe weather and intentional attacks
 
-<iframe src="assets/fig6.hypothesis_test.html" width="1050" height="450" frameborder="0"></iframe>
+<iframe src="assets/fig6.hypothesis_test.html" width="1000" height="450" frameborder="0"></iframe>
 
 To determine our test statistic, we plotted the distribution of outage duration for each labels. Here, we see observe that the distributions have similar shapes, leading us to choose absolute difference in means as our test statistic.
 
@@ -192,7 +190,7 @@ To determine our test statistic, we plotted the distribution of outage duration 
 
 <iframe
   src="assets/fig7.ht_result.html"
-  width="1050"
+  width="1000"
   height="450"
   frameborder="0"
 ></iframe>
