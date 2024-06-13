@@ -237,12 +237,13 @@ We will use **F1 score** as our metric as the distribution of cause cateogry is 
 
 First, we decided to implement a classification model using Logistic Regression based on the following variables to predict whether or not an outage is caused by severe weather:
 
-- CLIMATE REGION (Nominal): This will help us account for any geographic significance for any severe weather-related power outages.  
-- MONTH: Weather may be more or less favorable/severe in certain periods
-- OUTAGE DURATION: Severe weather related power outages may have correlatoin with outage duration.
+- Climate Region (Nominal): This will help us account for any geographic significance for any severe weather-related power outages.  
+- Month (ordinal): Weather may be more or less favorable/severe in certain periods
+- Outage Duration (Quantitative): Severe weather related power outages may have correlatoin with outage duration.
 
+Here, we one-hot encode the climate region and month while we kept outage duration as is without any processing.
 
-### Results from our LogisticRegressor:
+### Results from our LogisticRegression:
 
 ```
 f1 score on training data: 0.7391941509470169
@@ -250,18 +251,21 @@ f1 score on test data: 0.7237204323380247
 Accuracy on training data: 0.7116095152603232
 Accuracy on test data: 0.6944336917562725
 ```
-For our baseline model, we used a linear regression model based on few variables to predict the outage duration. We used the following variables for simplicity sake:
-
-- CLIMATE.REGION: accounts for location (This will be onehotencoded).
-- CAUSE.CATEGORY: accounts for different causes of the outage. (This will also be one-hot encoded).
-- MONTH: accounts for the time of which the outage is occured. (Already in type float and nominally sorted).
+Our baseline model already shows pretty good result for not tuning any hyperparameters and only using 3 features.
 
 # Final Model
 
-In our final model, we encoded tests using a custom logistic regressor, a decision tree classifier, and a random forest classifier to validate our model.
-It is important to note that for initial test runs, we performed the classification without implemnting a grid search to get a rough idea of which classifier to use. 
+In our final model, we included the following features:
+- Climate Region (Nominal): This will help us account for any geographic significance for any severe weather-related power outages.  
+- Month (Ordinal): Weather may be more or less favorable/severe in certain periods
+- Outage Duration (Quantitative): Severe weather related power outages may have correlatoin with outage duration.
+- Outage Start (Ordinal): The start time of the outage can indiciate if an outage occured on the weekday or weekend. This may have some correlations with whether or not an outage is caused by severe weather. 
+- Climate Category (Nominal): This encodes geographical and climate information and may indicate if a region is more susceptible to severe weather
+- Total Sales (Quantitative): This may indicate if a region's energy infrastructure is strained due to excessive use.
 
-Our results for each are as follows:
+The categorical features, climate region, climate category and months are one-hot encoded. The Outage start feature will be binary transformed through a custom transformer to determine if the outage occured on a weekday or weekend. The quantitative features (Total Sales and Outage Duration) is standardised through a transformer.
+
+We also tested using different classifiers (logistic regression, a decision tree classifier, and a random forest classifier) to determine the best model for this task. It is important to note that for initial test runs, we performed the classification without implemnting a grid search to get a rough idea of which classifier to use. We did run 1000 iterations on different splits of the data and the results below are averaged:
 
 ### Logistic Regression:
 ```
@@ -293,7 +297,6 @@ We can see that the RandomForest performs the best of all the classifiers, in te
 #### Finding the best hyperparamters:
 
 In order to find the best combination of hyperparameters to yield the best results, we used GridSearchCV to perform k-fold cross validation on our test data.
-For our GridSearchCV test, we performed 1000 iterations per test, yielding 4000 total iterations. 
 
 ### Results from GridSearchCV:
 
@@ -303,7 +306,10 @@ For our GridSearchCV test, we performed 1000 iterations per test, yielding 4000 
  'classifer__n_estimators': 15
 ```
 
-When comparing the training versus testing scores, we see a relatively high score for test data.   
+<iframe src="assets/grid_data.html" width="1000"  height="450"  frameborder="0"></iframe>
+This graph above shows the f1-score performance depending on the hyperparameters.
+
+Using these hyperparamaters, We were able to receive very good performacne for both the train and test data. We have an almost perfect f1-score on our train data, and a 85% f1 score for our test data. This is a significant increase in performance from our baseline model.
 #### Training data:
 ```py
 grids.score(X_train, y_train)
@@ -314,8 +320,6 @@ grids.score(X_train, y_train)
 grids.score(X_test, y_test)
 0.8409893992932863
 ```
-
-<iframe src="assets/grid_data.html" width="1050"  height="450"  frameborder="0"></iframe>
 
 # Fairness Analysis
 
