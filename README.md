@@ -165,9 +165,6 @@ This is the observed distribution of permutation TVD's against our observed TVD.
 
 This essentially implies that there is a **significant difference** in the distribution of customers affected and cause category. We can conclude that CUSTOMERS.AFFECTED is likely dependent on the values of CAUSE.CATEGORY, making it **MAR dependent**. 
 
-#### Dependency Visualization:
-<iframe src="assets/fig5b_hist.html" width="1000" height="450" frameborder="0"></iframe>
-
 
 # Hypothesis Testing
 
