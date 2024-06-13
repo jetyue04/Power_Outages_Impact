@@ -344,7 +344,7 @@ For our fairness evaluation, we decided to assess if the model performs differen
 
 #### Permutation Test Results
     Observed F1 score difference: 0.022343821249430018
-    P-value: 0.36
+    P-value: 0.701
 
 <iframe src="assets/fig9.fairness_eval.html" width="1050"  height="450"  frameborder="0"></iframe>
 
